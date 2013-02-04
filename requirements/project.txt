@@ -3,3 +3,5 @@ psycopg2==2.4.6
 South==0.7.6
 # debugging tools
 django-debug-toolbar==0.9.4
+# deploying
+dj-database-url==0.2.1
