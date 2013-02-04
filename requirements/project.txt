@@ -9,4 +9,5 @@ django-debug-toolbar==0.9.4
 # deploying
 dj-database-url==0.2.1
 django-storages==1.1.6
+boto==2.8.0
 gunicorn==0.17.2
