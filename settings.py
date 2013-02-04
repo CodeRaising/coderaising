@@ -1,3 +1,4 @@
+import dj_database_url
 
 ######################
 # MEZZANINE SETTINGS #
