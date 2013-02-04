@@ -56,6 +56,10 @@ If your static media doesn't show up, try running this::
 	$ heroku labs:enable user-env-compile -a coderaising
 	$ heroku run python manage.py collectstatic
 
+If the deploy is taking too long, you can tell Heroku not to run the collectstatic command::
+
+	$ mkdir .heroku
+	$ touch .heroku/collectstatic_disabled
 
 Setting up email
 ----------------
