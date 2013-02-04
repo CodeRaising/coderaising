@@ -342,7 +342,10 @@ if os.environ.get("RACK_ENV", None) == "production":
     import dj_database_url
     
     DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
-    INSTALLED_APPS += ("gunicorn",)
+
+    INSTALLED_APPS += ("gunicorn",
+                       "storages")
+
     # from http://offbytwo.com/2012/01/18/deploying-django-to-heroku.html
     # To make it easier to turn DEBUG on and off consider adding the following to your settings.py:
     DEBUG = bool(os.environ.get('DJANGO_DEBUG', ''))
