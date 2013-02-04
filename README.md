@@ -55,3 +55,16 @@ If your static media doesn't show up, try running this::
 
 	$ heroku labs:enable user-env-compile -a coderaising
 	$ heroku run python manage.py collectstatic
+
+
+Setting up email
+----------------
+
+In order to send emails when new users register on the site, we need to add Sendgrid::
+
+	$ heroku addons:add sendgrid:starter
+
+Then go to http://sendgrid.com/account/overview to see your Sendgrid username and password.
+
+	$ heroku config:add SENDGRID_USERNAME=<username>
+	$ heroku config:add SENDGRID_PASSWORD=<password>
