@@ -28,3 +28,25 @@ Start up the Django server::
 	$ python manage.py runserver
 
 
+Deployment
+----------
+
+Create an app on Heroku::
+
+	$ heroku create coderaising
+
+When you want to deploy to Heroku, you need to set some environment variables.
+
+This will set the RACK_ENV value to production so that settings.py will use the Heroku settings::
+
+	$ heroku config:add RACK_ENV=production
+
+And you need to set up some AWS settings for static files and uploaded media to be served up by S3::
+
+	$ heroku config:add AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxxx
+	$ heroku config:add AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxx
+    $ heroku config:add AWS_STORAGE_BUCKET_NAME=xxxxxxxxxxxxxx
+
+Now try deploying the app::
+
+	$ git push heroku master

@@ -151,24 +151,22 @@ STATICFILES_FINDERS = (
 # DATABASES #
 #############
 
-DATABASES = {'default': dj_database_url.config()}
-
-# DATABASES = {
-#     "default": {
-#         # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-#         "ENGINE": "django.db.backends.",
-#         # DB name or path to database file if using sqlite3.
-#         "NAME": "",
-#         # Not used with sqlite3.
-#         "USER": "",
-#         # Not used with sqlite3.
-#         "PASSWORD": "",
-#         # Set to empty string for localhost. Not used with sqlite3.
-#         "HOST": "",
-#         # Set to empty string for default. Not used with sqlite3.
-#         "PORT": "",
-#     }
-# }
+DATABASES = {
+    "default": {
+        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+        "ENGINE": "django.db.backends.",
+        # DB name or path to database file if using sqlite3.
+        "NAME": "",
+        # Not used with sqlite3.
+        "USER": "",
+        # Not used with sqlite3.
+        "PASSWORD": "",
+        # Set to empty string for localhost. Not used with sqlite3.
+        "HOST": "",
+        # Set to empty string for default. Not used with sqlite3.
+        "PORT": "",
+    }
+}
 
 
 #########
@@ -340,6 +338,40 @@ RICHTEXT_WIDGET_CLASS = "mdown.forms.WmdWidget" #Activates the WMD rich text edi
 #RICHTEXT_FILTER = "mdown.filters.codehilite" # Renders the content using markdown with the codehilite extension enabled.*
 RICHTEXT_FILTER = "mdown.filters.plain" # Renders the content using vanilla markdown formatting.*
 
+if environ.get("RACK_ENV", None) == "production":
+    import dj_database_url
+    
+    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+    INSTALLED_APPS += ("gunicorn",)
+    # from http://offbytwo.com/2012/01/18/deploying-django-to-heroku.html
+    # To make it easier to turn DEBUG on and off consider adding the following to your settings.py:
+    DEBUG = bool(os.environ.get('DJANGO_DEBUG', ''))
+    TEMPLATE_DEBUG = DEBUG
+    # Now you can turn debug on using heroku config:add DJANGO_DEBUG=true and turn it off with heroku config:remove DJANGO_DEBUG
+
+    ###################
+    # S3 FILE STORAGE #
+    ###################
+
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME", "")
+
+    AWS_HEADERS = {
+        "Cache-Control": "public, max-age=86400",
+    }
+
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_QUERYSTRING_AUTH = False
+    AWS_S3_SECURE_URLS = False
+    AWS_REDUCED_REDUNDANCY = False
+    AWS_IS_GZIPPED = False
+
+    STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+    MEDIA_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 
 ##################
 # LOCAL SETTINGS #
