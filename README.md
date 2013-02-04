@@ -50,3 +50,8 @@ And you need to set up some AWS settings for static files and uploaded media to 
 Now try deploying the app::
 
 	$ git push heroku master
+
+If your static media doesn't show up, try running this::
+
+	$ heroku labs:enable user-env-compile -a coderaising
+	$ heroku run python manage.py collectstatic

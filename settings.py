@@ -374,7 +374,8 @@ if os.environ.get("RACK_ENV", None) == "production":
     AWS_IS_GZIPPED = False
 
     STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
-    MEDIA_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+    MEDIA_URL = STATIC_URL + 'media/'
+    ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
 
 ##################
 # LOCAL SETTINGS #
