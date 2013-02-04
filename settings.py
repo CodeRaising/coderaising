@@ -338,7 +338,7 @@ RICHTEXT_WIDGET_CLASS = "mdown.forms.WmdWidget" #Activates the WMD rich text edi
 #RICHTEXT_FILTER = "mdown.filters.codehilite" # Renders the content using markdown with the codehilite extension enabled.*
 RICHTEXT_FILTER = "mdown.filters.plain" # Renders the content using vanilla markdown formatting.*
 
-if environ.get("RACK_ENV", None) == "production":
+if os.environ.get("RACK_ENV", None) == "production":
     import dj_database_url
     
     DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
