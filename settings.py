@@ -243,6 +243,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     #"mezzanine.accounts",
     #"mezzanine.mobile",
+    "mdown",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -325,6 +326,16 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 #     "DB_PASS": "", # Live database password
 #     "ADMIN_PASS": "", # Live admin user password
 # }
+
+##################
+# MARKDOWN       #
+##################
+
+RICHTEXT_WIDGET_CLASS = "mdown.forms.WmdWidget" #Activates the WMD rich text editor.* **(recommended)**
+#RICHTEXT_WIDGET_CLASS = "mdown.forms.PlainWidget" # Use a plain Textarea (no rich text editor).*
+
+#RICHTEXT_FILTER = "mdown.filters.codehilite" # Renders the content using markdown with the codehilite extension enabled.*
+RICHTEXT_FILTER = "mdown.filters.plain" # Renders the content using vanilla markdown formatting.*
 
 
 ##################
