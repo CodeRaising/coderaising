@@ -245,7 +245,7 @@ INSTALLED_APPS = (
     "mezzanine.accounts",
     #"mezzanine.mobile",
     "mezzanine_events",
-    "mdown",
+    "mezzanine_pagedown",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -335,11 +335,11 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # MARKDOWN       #
 ##################
 
-RICHTEXT_WIDGET_CLASS = "mdown.forms.WmdWidget" #Activates the WMD rich text editor.* **(recommended)**
-#RICHTEXT_WIDGET_CLASS = "mdown.forms.PlainWidget" # Use a plain Textarea (no rich text editor).*
+RICHTEXT_WIDGET_CLASS = "mezzanine_pagedown.widgets.PageDownWidget" # Uses the PageDown JavaScript editor and previewer.
+#RICHTEXT_WIDGET_CLASS = "mezzanine_pagedown.widgets.PlainWidget" # Uses a plain text area.
 
-#RICHTEXT_FILTER = "mdown.filters.codehilite" # Renders the content using markdown with the codehilite extension enabled.*
-RICHTEXT_FILTER = "mdown.filters.plain" # Renders the content using vanilla markdown formatting.*
+#RICHTEXT_FILTER = "mezzanine_pagedown.filters.codehilite" # Renders the content using Markdown with the CodeHilite extension enabled.
+RICHTEXT_FILTER = "mezzanine_pagedown.filters.plain" # Renders the content using vanilla Markdown formatting.
 
 ####################
 # MEZZANINE EVENTS #

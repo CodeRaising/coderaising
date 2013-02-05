@@ -1,5 +1,5 @@
 Mezzanine==1.3.0
-mezzanine-mdown==0.1a3
+https://bitbucket.org/akhayyat/mezzanine-pagedown/get/019a0f91c410.zip
 mezzanine-events==0.1
 psycopg2==2.4.6
 South==0.7.6
