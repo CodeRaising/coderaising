@@ -31,7 +31,7 @@ Start up the Django server::
 Deployment
 ----------
 
-Create an app on Heroku::
+Create an app on Heroku.
 
 	$ heroku create coderaising
 
@@ -87,3 +87,5 @@ Reference
 	* South: http://south.readthedocs.org/
 	* mezzanine-events: https://github.com/stbarnabas/mezzanine-events
 	* mezzanine-pagedown: https://bitbucket.org/akhayyat/mezzanine-pagedown
+	* django-herokuapp: https://github.com/etianen/django-herokuapp
+	* Heroku Hackers Guide: http://www.theherokuhackersguide.com/
