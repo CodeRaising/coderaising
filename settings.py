@@ -99,7 +99,7 @@ MANAGERS = ADMINS
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = None
+TIME_ZONE = "America/New_York"
 
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
@@ -244,6 +244,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     "mezzanine.accounts",
     #"mezzanine.mobile",
+    "mezzanine_events",
     "mdown",
 )
 
@@ -339,6 +340,18 @@ RICHTEXT_WIDGET_CLASS = "mdown.forms.WmdWidget" #Activates the WMD rich text edi
 
 #RICHTEXT_FILTER = "mdown.filters.codehilite" # Renders the content using markdown with the codehilite extension enabled.*
 RICHTEXT_FILTER = "mdown.filters.plain" # Renders the content using vanilla markdown formatting.*
+
+####################
+# MEZZANINE EVENTS #
+####################
+
+# The Google Maps country domain to query for geocoding. 
+# Setting this accurately improves results when users forget to enter a country in the mappable address. Default: 'maps.google.com.au'.
+MZEVENTS_GOOGLE_MAPS_DOMAIN = "maps.google.com" 
+# Whether the {% google_static_map %} template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones. Default: True.
+MZEVENTS_HIDPI_STATIC_MAPS = True 
+# The time zone that the event dates and times are in. Either this or the TIME_ZONE setting needs to be set.
+MZEVENTS_TIME_ZONE = "America/New_York" 
 
 if os.environ.get("RACK_ENV", None) == "production":
     import dj_database_url
