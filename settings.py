@@ -88,6 +88,8 @@ USE_SOUTH = True
 # In the format (('Full Name', 'email@example.com'),
 #                ('Full Name', 'anotheremail@example.com'))
 ADMINS = (
+    (('Nate Aune', 'nate@appsembler.com'),
+    ('Dan Choi', 'dhchoi@gmail.com'))
     # ('Your Name', 'your_email@domain.com'),
 )
 MANAGERS = ADMINS
