@@ -61,6 +61,9 @@ If the deploy is taking too long, you can tell Heroku not to run the collectstat
 	$ mkdir .heroku
 	$ touch .heroku/collectstatic_disabled
 
+Read more about serving up static assets with Django on Heroku:
+https://devcenter.heroku.com/articles/django-assets
+
 Setting up email
 ----------------
 
@@ -72,3 +75,13 @@ Then go to http://sendgrid.com/account/overview to see your Sendgrid username an
 
 	$ heroku config:add SENDGRID_USERNAME=<username>
 	$ heroku config:add SENDGRID_PASSWORD=<password>
+
+Read more about Sendgrid configuration with Django here: http://sendgrid.com/docs/Integrate/Frameworks/django.html
+Also check out django-sendgrid-events: http://django-sendgrid-events.readthedocs.org/en/latest/
+
+Reference
+---------
+
+	* django-storages: http://django-storages.readthedocs.org/
+	* django-debug-toolbar: https://github.com/django-debug-toolbar/django-debug-toolbar
+	* South: http://south.readthedocs.org/
