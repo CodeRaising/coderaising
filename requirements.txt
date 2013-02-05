@@ -1,3 +1,2 @@
-Mercurial==2.5
 -e hg+ssh://hg@bitbucket.org/akhayyat/mezzanine-pagedown#egg=mezzanine-pagedown
 -r requirements/project.txt
