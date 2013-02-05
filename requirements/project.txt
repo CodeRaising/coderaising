@@ -1,4 +1,5 @@
 Mezzanine==1.3.0
+hg
 -e hg+ssh://hg@bitbucket.org/akhayyat/mezzanine-pagedown#egg=mezzanine-pagedown
 mezzanine-events==0.1
 psycopg2==2.4.6
