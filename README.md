@@ -85,3 +85,5 @@ Reference
 	* django-storages: http://django-storages.readthedocs.org/
 	* django-debug-toolbar: https://github.com/django-debug-toolbar/django-debug-toolbar
 	* South: http://south.readthedocs.org/
+	* mezzanine-events: https://github.com/stbarnabas/mezzanine-events
+	* mezzanine-pagedown: https://bitbucket.org/akhayyat/mezzanine-pagedown
