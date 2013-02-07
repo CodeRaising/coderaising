@@ -5,9 +5,14 @@ South==0.7.6
 
 # debugging tools
 django-debug-toolbar==0.9.4
+# see how to invoke the Werkzeug debugger with runserver_plus here: http://packages.python.org/django-extensions/runserver_plus.html
+Werkzeug==0.8.3
+django-extensions==1.0.3
+bpython==0.11
+pip-tools==0.2.1  # keeps your package versions fresh. https://github.com/nvie/pip-tools/blob/master/README.md
 
 # deploying
-dj-database-url==0.2.1
-django-storages==1.1.6
-boto==2.8.0
+dj-database-url==0.2.1  # for parsing the Heroku database URL
+django-storages==1.1.6  # for uploading static media to Amazon S3
+boto==2.8.0             # python library for talking to Amazon AWS
 gunicorn==0.17.2
