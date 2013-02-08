@@ -63,7 +63,7 @@ To serve this end, each team will host their codebase publicly on GitHub.  Each
 project will be monitored and scored based partly on how much of the work is
 contributed by the beginners.
 
-## Launch day
+## Launch day and prizes
 
 At the end of the CodeRaising, teams official launch their projects. We will make 
 sure to get some local tech new coverages for the projects post-launch. 
@@ -76,6 +76,11 @@ The winner will get 1 year of Heroku 2-dyno hosting. ??
 
 The runner-up will get 6 months of Heroku 2-dyno hosting. ??
 
+But of course, in the larger view, all the teams will be winners! They will
+have taken on the challenge of collaborating to build something useful in the
+real world, solving myriad real-world technical problems along the way, and
+bringing up beginners in the process.  CodeRaising aims to be a real growth
+experience for everyone who joins in.
 
 
 
