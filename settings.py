@@ -235,6 +235,7 @@ INSTALLED_APPS = (
     "django.contrib.sites",
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
+    "apps.theme",  # this apparently has to go before the Mezzanine apps or else the theme won't be registered
     "mezzanine.boot",
     "mezzanine.conf",
     "mezzanine.core",
@@ -404,6 +405,9 @@ if os.environ.get("RACK_ENV", None) == "production":
     EMAIL_PORT = 587        # 25, 587, 2525 and 465 on ssl
     EMAIL_USE_TLS = True 
     DEFAULT_FROM_EMAIL = 'nate@appsembler.com'
+
+# this doesn't seem necessary. 
+# THEME = "apps.theme"
 
 ##################
 # LOCAL SETTINGS #
