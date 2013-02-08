@@ -236,6 +236,7 @@ INSTALLED_APPS = (
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
     "apps.theme",  # this apparently has to go before the Mezzanine apps or else the theme won't be registered
+    "apps.userprofile",
     "mezzanine.boot",
     "mezzanine.conf",
     "mezzanine.core",
@@ -295,6 +296,7 @@ PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
 PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 
 ACCOUNTS_VERIFICATION_REQUIRED = True
+AUTH_PROFILE_MODULE = "userprofile.UserProfile"
 
 #########################
 # OPTIONAL APPLICATIONS #
