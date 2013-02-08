@@ -1,2 +1,1 @@
--e hg+https://bitbucket.org/akhayyat/mezzanine-pagedown#egg=mezzanine-pagedown
 -r requirements/project.txt
