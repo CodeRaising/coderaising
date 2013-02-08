@@ -65,7 +65,7 @@ contributed by the beginners.
 
 ## Launch day and prizes
 
-At the end of the CodeRaising, teams official launch their projects. We will make 
+At the end of the CodeRaising, teams officially launch their projects. We will make 
 sure to get some local tech new coverages for the projects post-launch. 
 
 Please edit this below; just a new idea -> 
