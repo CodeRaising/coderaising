@@ -99,11 +99,11 @@ $(function() {
 </div>
 
 <div class="span3 right">
+    {% block right_panel %}
     {% nevercache %}
     {% include "includes/user_panel.html" %}
     {% endnevercache %}
     <div class="panel">
-    {% block right_panel %}
     {% ifinstalled mezzanine.twitter %}
     {% include "twitter/tweets.html" %}
     {% endifinstalled %}
