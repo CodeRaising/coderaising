@@ -31,6 +31,32 @@ on GitHub, not-for-profit, and open-source.
 
 ## The application process
 
+Mentors who want to propose projects and lead teams should write up a project
+proposal and send us a link by DATE. The proposal may be hosted on Google Docs
+or on GitHub as a Markdown file or gist.  The proposal should describe the
+project to they propose to build during the 4-week CodeRaising, the languages and 
+frameworks it will use, and some of the skills that beginners on the project
+can expect to learn.
 
+CodeRaising organizers will then review the applications and select 8 for
+the CodeRaising on DATE.
+
+The 8 teams then will have 1 week to design a logo and recruit the necessary 
+team members.  
+
+Then the CodeRaising begins, meeting on Saturday, DATE, at LOCATION from TIME
+to TIME.
+
+## The CodeRaising period
+
+During the 4-week CodeRaising, teams are expected to meet at the VENUE on each
+Saturday.  They are permitted to work on the project outside that time as well.
+
+Since part of the point of the CodeRaising is to mentor beginners, teams
+are expected to allow beginners to make significant contributions.
+
+To serve this end, each team will host their codebase publicly on GitHub.  Each
+project will be monitored and scored based partly on how much of the work is
+contributed by the beginners.
 
 
