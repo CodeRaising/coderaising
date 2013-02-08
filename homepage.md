@@ -82,5 +82,3 @@ real world, solving myriad real-world technical problems along the way, and
 bringing up beginners in the process.  CodeRaising aims to be a real growth
 experience for everyone who joins in.
 
-
-

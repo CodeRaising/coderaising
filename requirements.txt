@@ -1,16 +1,1 @@
-Django==1.4.3
-Mezzanine==1.3.0
-Pillow==1.7.8
-bleach==1.2
-distribute==0.6.26
-dj-database-url==0.2.1
-filebrowser-safe==0.2.14
-gdata==2.0.12
-git-remote-helpers==0.1.0
-googlecl==0.9.11
-grappelli-safe==0.2.11
-html5lib==0.95
-pytz==2012j
-vboxapi==1.0
-virtualenv==1.8.2
-wsgiref==0.1.2
+-r requirements/project.txt
