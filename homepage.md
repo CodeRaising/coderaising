@@ -50,7 +50,11 @@ to TIME.
 ## The CodeRaising period
 
 During the 4-week CodeRaising, teams are expected to meet at the VENUE on each
-Saturday.  They are permitted to work on the project outside that time as well.
+Saturday. They are permitted to work on the project outside that time as well.
+
+It's expected that some people may have to skip a Saturday CodeRaising session
+due to other plans and commitments. That is okay, as long as some team members
+show up at the venue.
 
 Since part of the point of the CodeRaising is to mentor beginners, teams
 are expected to allow beginners to make significant contributions.
