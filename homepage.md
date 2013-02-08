@@ -1,5 +1,15 @@
+
 CodeRaising Boston is a hackathon bringing 8 teams of mentors and apprentices
 to build cool nonprofit open-source software applications over 4 weekends.
+Teams will meet at a venue to code each Saturday during the CodeRaising, with
+food and drinks provided. At the end of the CodeRaising, all 8 teams are
+expected to launch their applications to great fanfare.
+
+Why CodeRaising? Because one-weekend hackathons are often too short to produce
+applications that last and that people continue to maintain and improve
+afterward.  And the short deadlines create too much stress to let any serious
+mentoring happen. We want to redress both of these shortcomings with
+CodeRaising.
 
 The goals of CodeRaising are 
 
@@ -17,8 +27,11 @@ scratch.
 ## The projects
 
 Teams can build their application with any language and framework they want.
-Projects must be useful to endusers who are not coders, and they must be hosted
-on GitHub, not-for-profit, open-source.
+Projects must be useful to end users who are not coders, and they must be hosted
+on GitHub, not-for-profit, and open-source.
+
+## The application process
+
 
 
 
