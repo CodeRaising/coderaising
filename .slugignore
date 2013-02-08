@@ -1,4 +1,4 @@
 tests
 tests.py
-static
-resources
+/static
+/resources
