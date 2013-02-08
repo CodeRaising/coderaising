@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{{ title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block body_id %}account{% endblock %}
+
+{{ block.super }}
+{% block breadcrumb_menu %}
+{% endblock %}
+
+{{ block.super }}
+{% block left_panel %}
+{% endblock %}
+
+{% block main %}
+
+<fieldset>
+    <legend>{{ title }}</legend>
+    <p>Add some text here about what it means to be a mentor or participate in CodeRaising.</p>
+
+    <form method="post">
+    {% fields_for form %}
+    <div class="form-actions">
+        <input class="btn btn-primary btn-large" type="submit" value="{{ title }}">
+    </div>
+    </form>
+</fieldset>
+{% endblock %}
+
+{{ block.super }}
+{% block right_panel %}
+{% endblock %}
