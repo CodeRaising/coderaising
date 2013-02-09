@@ -296,7 +296,12 @@ PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
 PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 
 ACCOUNTS_VERIFICATION_REQUIRED = True
+
 AUTH_PROFILE_MODULE = "userprofile.UserProfile"
+ACCOUNTS_PROFILE_VIEWS_ENABLED = True
+ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS = (
+    "signup_date",
+)
 
 #########################
 # OPTIONAL APPLICATIONS #
