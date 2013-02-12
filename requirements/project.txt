@@ -17,6 +17,7 @@ pip-tools==0.2.1  # keeps your package versions fresh. https://github.com/nvie/p
 dj-database-url==0.2.1   # for parsing the Heroku database URL
 django-storages==1.1.6   # for uploading static media to Amazon S3
 boto==2.8.0              # python library for talking to Amazon AWS
-gunicorn==0.17.2
+gunicorn==0.17.2         
+gevent==0.13.7                 
 cssmin==0.1.4            # algorithm used to compress assets
 django-compressor==1.1.2 # for compressing static assets
