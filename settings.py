@@ -235,6 +235,7 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.humanize", # for django-wiki
     "django.contrib.redirects",
     "django.contrib.sessions",
     "django.contrib.sites",
@@ -255,6 +256,16 @@ INSTALLED_APPS = (
     #"mezzanine.mobile",
     "mezzanine_events",
     "mezzanine_pagedown",
+    "south",
+    "django_notify", # for django-wiki
+    "mptt", # for django-wiki
+    "sekizai", # for django-wiki
+    "sorl.thumbnail", # for django-wiki
+    "wiki", # for django-wiki
+    "wiki.plugins.attachments", # for django-wiki
+    "wiki.plugins.notifications", # for django-wiki
+    "wiki.plugins.images", # for django-wiki
+    "wiki.plugins.macros", # for django-wiki
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -270,6 +281,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "sekizai.context_processors.sekizai", # for django-wiki
 )
 
 # List of middleware classes to use. Order is important; in the request phase,

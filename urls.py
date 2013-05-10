@@ -1,9 +1,10 @@
-
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 
 from mezzanine.core.views import direct_to_template
 
+from wiki.urls import get_pattern as get_wiki_pattern
+from django_notify.urls import get_pattern as get_notify_pattern
 
 admin.autodiscover()
 
@@ -16,6 +17,12 @@ urlpatterns = patterns("",
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
+
+    # WIKI URLS
+    # ---------
+    (r'^wiki/notify/', get_notify_pattern()),
+    (r'^wiki/', get_wiki_pattern()),
+
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
