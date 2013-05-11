@@ -1,4 +1,5 @@
-{% extends "root.html" %}
+{% extends "base.html" %}
+{# will this be recursive? #}
 
 {% load sekizai_tags i18n wiki_tags %}
 {% load url from future %}
@@ -12,7 +13,7 @@
     <link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap-responsive.min.css" rel="stylesheet"> -->
 {% endblock %}
 
-{% block below_nav %}
+{% block canvas %}
     {% block wiki_body %}
     
     {% comment %}
@@ -110,7 +111,7 @@
     </div>
 
     {% endblock %}
-{% endblock below_nav %}
+{% endblock canvas %}
 
 {% block extra_js %}
   <script src="{{ STATIC_URL }}wiki/js/core.js"></script>
