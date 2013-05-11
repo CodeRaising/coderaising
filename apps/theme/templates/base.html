@@ -1,4 +1,51 @@
+<<<<<<< HEAD
 {% extends "root.html" %}
+=======
+<!DOCTYPE html>
+{% load pages_tags mezzanine_tags i18n future %}
+<html>
+<head>
+
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
+
+{% ifinstalled mezzanine.blog %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+{% endifinstalled %}
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.1.1/united/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css"> this is for local testing -->
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.responsive.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/mezzanine.css">
+{% ifinstalled cartridge.shop %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/cartridge.css">
+{% endifinstalled %}
+{% block extra_css %}{% endblock %}
+{% endcompress %}
+
+{% compress js %}
+<script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+<script>
+$(function() {
+    $('.middleinput:text, textarea').addClass('xlarge');
+    $('.control-group label').addClass('control-label');
+});
+</script>
+{% block extra_js %}{% endblock %}
+{% endcompress %}
+<!--[if lt IE 9]>
+<script src="{{ STATIC_URL }}js/html5shiv.js"></script>
+<![endif]-->
+
+{% block extra_head %}{% endblock %}
+>>>>>>> d3e49a6000416dd68d97a37ceff334f543b591a2
 
 {% load pages_tags mezzanine_tags i18n future %}
 
