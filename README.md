@@ -3,9 +3,23 @@ coderaising.org
 
 You can contribute to the CodeRaising.org site by forking this repo, editing the local_settings.py file, and running the following commands::
 
+	$ apt-get install libevent-dev
+
+This is required to install some of the packages in the next step::
+
 	$ pip install -r requirements/project.txt
 
 This will install Mezzanine (including all dependencies such as Django), and South (for migrations) and psycopg2 (to interface with PostgreSQL). If you want to use MySQL instead, then add MySQL-python to the project.txt file.
+
+Create a local_settings.py file and set the default database to SQLite3::
+
+	DEBUG = True
+	DATABASES = {
+    	"default": {
+        	"ENGINE": "django.db.backends.sqlite3",
+        	"NAME": "coderaising.db",
+        }
+	}
 
 Create the database, sync and migrate all with this one convenience management command. This will also create some sample data, such as contact form, gallery and demo content::
 
