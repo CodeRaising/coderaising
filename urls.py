@@ -36,14 +36,14 @@ urlpatterns = patterns("",
     #     {"template": "dummy.html"},
     #     name="dummy1"
     #     ),
-    url("^dummy2/$", TemplateView.as_view(template_name="dummy.html"), name="dummy3"),
+    url("^dummy2/$", TemplateView.as_view(template_name="dummy.html"), name="dummy2"),
 
     # these two examples refer to actual views in apps/core/views.py  For the
     # purposes of just creating a template, it's fine to use one of the two 
     # methods above, but once you start making the template do stuff, you'll
     # want to use a custom view.
-    url("^dummy3/$", "apps.core.views.functional_dummy_view", name="dummy2"),
-    url("^dummy4/$", ClassyDummyView.as_view(), name="dummy3"),
+    url("^dummy3/$", "apps.core.views.functional_dummy_view", name="dummy3"),
+    url("^dummy4/$", ClassyDummyView.as_view(), name="dummy4"),
 
 
 # --------------------------------------------------------------------------
