@@ -1,7 +1,8 @@
 coderaising.org
 ===============
 
-You can contribute to the CodeRaising.org site by forking this repo, editing the local_settings.py file, and running the following commands::
+You can contribute to the CodeRaising.org site by forking this repo.  For a walkthrough of git commands used, see [here.](https://github.com/esoergel/meta/wiki/Git-Walkthrough)
+Once you have a local copy, edit the local_settings.py file, and run the following commands::
 
 	$ apt-get install libevent-dev
 
