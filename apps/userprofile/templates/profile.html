@@ -17,13 +17,53 @@
 
 
 {% block content %}
-  <div class="block_area">
-    <p>This block is outlined.  Notice that block canvas totally overrides all the main content of the site, but leaves the navbar and the footer intact?  Try changing the name of this block to "block content" to replace that block instead and see what it looks like.</p>
-
-    <p>Check out <a href="http://twitter.github.io/bootstrap/">bootstrap</a> and skim the tools it provides for free (no effort).  Bootstrap is called in base.html, so every page that extends it will have access to all the tools.  For example, here is a bootstrap-styled <a class="btn btn-primary" href="http://twitter.github.io/bootstrap/base-css.html#buttons">button</a>
-    <p></p>
-
-    <p>Here is a variable I defined in the urlconfig: {{params.variable}}</p>
-    <p>This one is defined in a view: {{variable}}</p>
-  </div>
+<form class="form-horizontal" action='' method="POST">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Edit Profile</legend>
+    </div>
+    <div class="control-group">
+      <!-- Username -->
+      <label class="control-label"  for="username">Name</label>
+      <div class="controls">
+        <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- E-mail -->
+      <label class="control-label" for="email">E-mail</label>
+      <div class="controls">
+        <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+        <p class="help-block">Please provide your E-mail</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label" for="bio">Bio</label>
+      <div class="controls">
+        <textarea rows="3" id="bio" name="bio" placeholder="" class="input-xlarge"></textarea>
+        <p class="help-block">Please tell us about yourself and your background</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password -->
+      <label class="control-label"  for="skills">Skills</label>
+      <div class="controls">
+        <input type="text" id="skills" name="skills" placeholder="" class="input-xlarge">
+        <p class="help-block">What skills do you know? What skills would you like to learn?</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
 {% endblock %}
