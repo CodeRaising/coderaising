@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 from mezzanine.core.views import direct_to_template
 
-from apps.core.views import ClassyDummyView
+from apps.cities.views import ClassyDummyView
 
 admin.autodiscover()
 
@@ -44,7 +44,7 @@ urlpatterns = patterns("",
     # purposes of just creating a template, it's fine to use one of the two 
     # methods above, but once you start making the template do stuff, you'll
     # want to use a custom view.
-    url("^dummy3/$", "apps.core.views.functional_dummy_view", name="dummy3"),
+    url("^dummy3/$", "apps.cities.views.functional_dummy_view", name="dummy3"),
     url("^dummy4/$", ClassyDummyView.as_view(), name="dummy4"),
 
 
