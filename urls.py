@@ -13,6 +13,8 @@ admin.autodiscover()
 # to the project's homepage.
 
 urlpatterns = patterns("",
+    url("^myprofile/$", TemplateView.as_view(template_name="profile.html"), name="myprofile"),
+    url("^profilelist/$", TemplateView.as_view(template_name="profilelist.html"), name="profilelist"),
     # once we compartmentalize the function into apps (profiles, projects, etc...)
     # it'll make sense to use include() and store the relevant urls within that app
     # Here are four different ways to render a template:
