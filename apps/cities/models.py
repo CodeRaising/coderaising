@@ -1,11 +1,11 @@
 from django.db import models
-
+from apps.userprofile.models import UserProfile
 
 # City
 class City(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    organizers = models.ManyToManyField("UserProfile")
+    organizers = models.ManyToManyField(UserProfile)
 
 
 # Cohort
@@ -19,5 +19,5 @@ class Cohort(models.Model):
     city = models.ForeignKey(City)
     start_date = models.DateField()
     end_date = models.DateField()
-    members = models.ManyToManyField("UserProfile")
-    organizers = models.ManyToManyField("UserProfile")
+    members = models.ManyToManyField(UserProfile, related_name="cohort_members_set")
+    organizers = models.ManyToManyField(UserProfile, related_name="cohort_organizers_set")

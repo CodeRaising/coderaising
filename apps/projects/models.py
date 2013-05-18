@@ -1,5 +1,7 @@
 from django.db import models
 
+from apps.userprofile.models import UserProfile
+
 class Project(models.Model):
     """
     A team of people working on one project.
@@ -9,11 +11,11 @@ class Project(models.Model):
     # demo_link = models.URLField(blank=True, null=True)
     # image = models.ImageField()
     technologies = models.TextField(default="To be determined, mentor will update")
-    cohort = models.ManyToManyField(Cohort)
-    city = models.ManyToManyField(City)
+    cohort = models.ManyToManyField('cities.Cohort')
+    city = models.ManyToManyField('cities.City')
     # is_approved = models.BooleanField(default=False)
-    members = models.ManyToManyField("UserProfile")
-    mentors = models.ManyToManyField("UserProfile")
+    members = models.ManyToManyField(UserProfile, related_name="project_members_set")
+    mentors = models.ManyToManyField(UserProfile, related_name="project_mentors_set")
 
     def save(self, *args, **kwargs):
         # ensure all mentors are members
