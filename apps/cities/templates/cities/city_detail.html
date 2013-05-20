@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% comment %}
+{% endcomment %}
+
+{% block meta_title %}
+  {{city.name}}
+{% endblock %}
+
+
+{% block content %}
+<p>The city name is {{city.name}}</p>
+
+<p>The city description is: {{city.description}}</p>
+
+<p>
+  Here are 
+  <a href="{% url "cohort_list" city.name %}">
+    {{city.name}} cohorts
+  </a>
+</p>
+{% endblock %}
