@@ -35,7 +35,7 @@ urlpatterns = patterns("",
         ),
     # this is a better dummy1 implementation (with no additional context passed)
     # url(
-    #     r"^dummy1$",
+    #     r"^dummy1/$",
     #     direct_to_template,
     #     {"template": "dummy.html"},
     #     name="dummy1"
