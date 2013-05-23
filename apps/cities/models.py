@@ -5,18 +5,8 @@ from apps.core_stuff.models import NamedSlugged
 
 # City
 class City(NamedSlugged):
-    # name = models.CharField(max_length=255)
-    # slug = models.SlugField()
     description = models.TextField(blank=True)
     organizers = models.ManyToManyField(UserProfile, blank=True)
-
-    def __unicode__(self):
-        """
-        adding this function to your models lets you define how each
-        object appears, rather than "City object", I want the city's
-        name
-        """
-        return self.name
 
 
 # Cohort
@@ -25,8 +15,6 @@ class Cohort(NamedSlugged):
     A class composed of several teams in a given city.
     eg: City: Boston, Cohort: May-2013
     """
-    # name = models.CharField(max_length=255)
-    # slug = models.SlugField()
     description = models.TextField(blank=True)
     city = models.ForeignKey(City)
     start_date = models.DateField(default=None, blank=True, null=True)

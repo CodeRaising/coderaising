@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 
+from apps.core_stuff.views import DebugMixin
 from .models import City, Cohort
 
 
@@ -19,12 +20,6 @@ class CitiesListView(ListView):
     # need to define it here.
     # template_name="cities/city_list.html"
     # context_object_name = variable_to_use_in_templates
-
-    # def get_context_data(self, **kwargs):
-    #     "This is to print your context variables during testing ONLY"
-    #     context = super(CitiesListView, self).get_context_data(**kwargs)
-    #     print context
-    #     return context
 
 
 class CityDetailView(DetailView):
