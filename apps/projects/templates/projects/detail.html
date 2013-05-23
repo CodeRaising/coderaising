@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+
+{% block meta_title %}
+  CodeRaising Projects - {{pk.name}} -- {{proj_id.name}}
+{% endblock %}
+
+{% block content %}
+<p>Projects:</p>
+
+<p>
+<a href="abc.html">
+	{{proj_id}} - {{pk}}
+	-- {{context_object_name.pk}}
+	--- {{slug_field}}
+	---- {{slug_url_kwarg}}
+	-----{{project.name}}
+	------{{project.description}}
+</a>
+</p>
+
+
+{% endblock %}
+

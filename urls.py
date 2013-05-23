@@ -17,6 +17,8 @@ urlpatterns = patterns("",
     url(r"^profilelist/$", TemplateView.as_view(template_name="profilelist.html"), name="profilelist"),
 
     url(r"^cities/", include("apps.cities.urls")),
+
+	url(r"^projects/", include("apps.projects.urls")),
     # once we compartmentalize the function into apps (profiles, projects, etc...)
     # it'll make sense to use include() and store the relevant urls within that app
     # Here are four different ways to render a template:
