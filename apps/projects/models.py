@@ -17,10 +17,7 @@ class Project(models.Model):
     members = models.ManyToManyField(UserProfile, related_name="project_members_set")
     mentors = models.ManyToManyField(UserProfile, related_name="project_mentors_set")
 
-	def __unicode__(self):
-		"""
-		returns project.name
-		"""
+    def __unicode__(self):
 		return self.name
 
     def save(self, *args, **kwargs):
