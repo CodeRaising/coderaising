@@ -6,17 +6,19 @@
 {% endblock %}
 
 {% block content %}
-<p>Projects:</p>
+<h1>Projects:</h1>
 
+<ul>
 {% for project in project_list %}
-	<p>
-	<a href="{% url "project_detail" project.pk project.name %}">
-
-	{{project.name}} - {{project.description}}
-	</a>
-	</p>
+	<li>
+		<a href="{% url "project_detail" project.pk project.name %}">
+		{{project.name}} 
+		</a>
+		<br />
+		<p> {{project.description}} </p>
+	</li>
 {% endfor %}
-
+</ul>
 
 {% endblock %}
 
