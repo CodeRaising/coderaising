@@ -26,7 +26,7 @@ urlpatterns = patterns("",
 	url(r"^(?P<project_id>\d+)-[\w]+/edit-project$", ProjectEditView.as_view(), name="project_edit"),
 
 	# project users list view url: /projects/(id)-(slug)/users
-	url(r"^(?P<project_id>\d+)-[\w]+/users$", ProjectUsersView.as_view(), name="project_users"),
+	url(r"^(?P<pk>\d+)-([\w|\s]+)/users$", ProjectUsersView.as_view(), name="project_users"),
 
 	# apply to project url: /projects/(id)-(slug)/apply-to-project
 	url(r"^(?P<project_id>\d+)-[\w]+/apply-to-project$", ProjectApplyView.as_view(), name="project_apply"),

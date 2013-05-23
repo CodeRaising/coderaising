@@ -28,9 +28,10 @@ class ProjectDetailView(DetailView):
 class ProjectEditView(UpdateView):
 	pass
 
-class ProjectUsersView(ListView):
-	model = UserProfile
-	template = "projects/users.html"
+###should this be a ListView instead with model = UserProfile???
+class ProjectUsersView(DetailView):
+	model = Project
+	template_name = "projects/users.html"
 
 	def get_queryset(self):
 		queryset = super(ProjectUsersView,self).get_queryset()
