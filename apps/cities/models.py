@@ -1,12 +1,14 @@
 from django.db import models
+
 from apps.userprofile.models import UserProfile
+from apps.core_stuff.models import NamedSlugged
 
 # City
-class City(models.Model):
-    name = models.CharField(max_length=255)
+class City(NamedSlugged):
+    # name = models.CharField(max_length=255)
     # slug = models.SlugField()
-    description = models.TextField()
-    organizers = models.ManyToManyField(UserProfile)
+    description = models.TextField(blank=True)
+    organizers = models.ManyToManyField(UserProfile, blank=True)
 
     def __unicode__(self):
         """
@@ -18,19 +20,27 @@ class City(models.Model):
 
 
 # Cohort
-class Cohort(models.Model):
+class Cohort(NamedSlugged):
     """
     A class composed of several teams in a given city.
     eg: City: Boston, Cohort: May-2013
     """
-    name = models.CharField(max_length=255)
+    # name = models.CharField(max_length=255)
     # slug = models.SlugField()
-    description = models.TextField()
+    description = models.TextField(blank=True)
     city = models.ForeignKey(City)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    members = models.ManyToManyField(UserProfile, related_name="cohort_members_set")
-    organizers = models.ManyToManyField(UserProfile, related_name="cohort_organizers_set")
+    start_date = models.DateField(default=None, blank=True, null=True)
+    end_date = models.DateField(default=None, blank=True, null=True)
+    members = models.ManyToManyField(
+        UserProfile,
+        related_name="cohort_members_set",
+        blank=True
+        )
+    organizers = models.ManyToManyField(
+        UserProfile,
+        related_name="cohort_organizers_set",
+        blank=True
+        )
 
     def __unicode__(self):
         """

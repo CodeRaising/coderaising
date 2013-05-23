@@ -22,7 +22,7 @@ Right now I'm overriding content instead of canvas, this means that the sidebar 
 {% for city in city_list %}
   <p>
     {# This generates the city_detail url for each city #}
-    <a href="{% url "city_detail" city.name %}">
+    <a href="{% url "city_detail" city.slug %}">
       {# the second argument can be the url name or view path #}
       
       {{city.name}} - {{city.description}}
