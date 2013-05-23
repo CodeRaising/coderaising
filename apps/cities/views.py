@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 
+from apps.core_stuff.views import DebugMixin
 from .models import City, Cohort
 
 
@@ -20,12 +21,6 @@ class CitiesListView(ListView):
     # template_name="cities/city_list.html"
     # context_object_name = variable_to_use_in_templates
 
-    # def get_context_data(self, **kwargs):
-    #     "This is to print your context variables during testing ONLY"
-    #     context = super(CitiesListView, self).get_context_data(**kwargs)
-    #     print context
-    #     return context
-
 
 class CityDetailView(DetailView):
     """
@@ -35,7 +30,7 @@ class CityDetailView(DetailView):
     here you also need a field to identify the object.
     """
     model = City
-    slug_field = "name"
+    # slug_field = "name"
     slug_url_kwarg = "city"
 
 
@@ -43,14 +38,18 @@ class CohortListView(ListView):
     """
     If I only list the model (like on CitiesListView), it'll show all
     cohorts, but we want to filter by city, so I need to restrict the
-    queryset by overriding get_queryset()
+    queryset by overriding get_queryset().
     """
     model = Cohort
 
     def get_queryset(self):
+        # get the city object
+        slug = self.kwargs.get("city", None)
+        self.city = City.objects.get(slug=slug)
+        # get the unfiltered queryset (which returns ALL cohorts)
         queryset = super(CohortListView, self).get_queryset()
-        city_name = self.kwargs['city']
-        return queryset.filter(city__name__exact=city_name)
+        # filter by city
+        return queryset.filter(city=self.city)
 
     def get_context_data(self, **kwargs):
         """
@@ -59,7 +58,9 @@ class CohortListView(ListView):
         renders it just needs to add a "cohort_category" to the context
         """
         context = super(CohortListView, self).get_context_data(**kwargs)
-        context['cohort_category'] = self.kwargs['city']
+        # get_queryset adds a city attribute to the class, which
+        # we can use here to get the city name
+        context['cohort_category'] = self.city.name
         return context
 
 

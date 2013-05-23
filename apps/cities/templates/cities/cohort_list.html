@@ -13,7 +13,7 @@
 {% for cohort in cohort_list %}
   <p>
     {# the cohort_detail url captures two kwargs, so I'm using named args in my reverser to avoid ambiguity #}
-    <a href="{% url "cohort_detail" city=cohort.city.name cohort=cohort.name %}">
+    <a href="{% url "cohort_detail" city=cohort.city.slug cohort=cohort.slug %}">
       {{cohort.name}} - {{cohort.description}}
     </a>
   </p>

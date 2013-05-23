@@ -368,7 +368,9 @@ MZEVENTS_GOOGLE_MAPS_DOMAIN = "maps.google.com"
 # Whether the {% google_static_map %} template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones. Default: True.
 MZEVENTS_HIDPI_STATIC_MAPS = True 
 # The time zone that the event dates and times are in. Either this or the TIME_ZONE setting needs to be set.
-MZEVENTS_TIME_ZONE = "America/New_York" 
+MZEVENTS_TIME_ZONE = "America/New_York"
+
+LOGIN_URL = "/accounts/login/"
 
 if os.environ.get("RACK_ENV", None) == "production":
     import dj_database_url
