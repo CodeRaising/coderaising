@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block meta_title %}
+	{{project.name}}: Members - CodeRaising Projects 
+{% endblock %}
+
+{% block content %}
+
+<h1>{{project.name}}</h1>
+<hr />
+
+<h3>Mentees:</h3>
+<ul>
+	{% for mentee in project.members.all %}
+	{# add links in <li> after UserProfile urls are created #}
+	<li> {{mentee.user}} </li>
+	{% endfor %}
+</ul>
+
+
+
+
+{% endblock %}
+
