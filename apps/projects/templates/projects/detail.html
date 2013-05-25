@@ -33,6 +33,9 @@
 	{% endfor %}
 </ul>
 
+<br />
+{# TODO: limit project editing to admins/mentors only #}
+<a href="{% url "project_edit" project.pk %}">Edit Project </a>
 
 
 
