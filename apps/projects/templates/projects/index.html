@@ -15,10 +15,14 @@
 		{{project.name}} 
 		</a>
 		<br />
-		<p> {{project.description}} </p>
+		<pre> {{project.description}} </pre>
 	</li>
 {% endfor %}
 </ul>
+
+<br />
+<a href="{% url "project_propose" %}"> Propse your own project </a>
+
 
 {% endblock %}
 
