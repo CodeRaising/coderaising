@@ -35,13 +35,16 @@
     </div>
   </div>
 </div>
-<p style="width:750px">{{city.description}}</p>
 
-<p>
-  Check out the {{city.name}}
-  <a href="{% url "cohort_list" city.slug %}">
-    cohorts
-  </a>!
-</p>
+<div class="container">
+  <p style="width:750px">{{city.description}}</p>
+
+  <p>
+    Check out the {{city.name}}
+    <a href="{% url "cohort_list" city.slug %}">
+      cohorts
+    </a>!
+  </p>
+</div>
 
 {% endblock %}

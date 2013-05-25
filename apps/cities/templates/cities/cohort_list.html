@@ -36,6 +36,7 @@
 </div>
 <p style="width:750px">{{city.description}}</p>
 
+<div class="container">
 {% for cohort in cohort_list %}
   <p>
     {# the cohort_detail url captures two kwargs, so I'm using named args in my reverser to avoid ambiguity #}
@@ -44,5 +45,6 @@
     </a> - {{cohort.description}}
   </p>
 {% endfor %}
+</div>
 
 {% endblock %}
