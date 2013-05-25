@@ -1,5 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView
+from django.views.generic import (	TemplateView, 
+									ListView, 
+									DetailView, 
+									UpdateView,
+									CreateView
+								 )
 from django.core.urlresolvers import reverse
 
 from .models import Project
@@ -11,8 +16,14 @@ class ProjectIndexView(ListView):
 	template_name="projects/index.html"
 
 ###edit view???
-class ProjectProposeView(TemplateView):
-	pass
+class ProjectProposeView(CreateView):
+	model = Project
+	template_name="projects/propose.html"
+	form_class = ProjectForm
+
+	def get_success_url(self):
+		return reverse("project_detail",args=(self.object.pk,))
+
 
 class ProjectDetailView(DetailView):
 	model = Project

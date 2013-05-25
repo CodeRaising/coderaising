@@ -17,7 +17,7 @@ urlpatterns = patterns("",
 	url(r"^$", ProjectIndexView.as_view(), name="project_index"),
 
 	#project proposal url: /projects/propose-project
-	url(r"^propose_project$", ProjectProposeView.as_view(), name="propose_project"),
+	url(r"^propose-project/?$", ProjectProposeView.as_view(), name="project_propose"),
 
 	# project details url: /projects/(id)-(slug)/
 	url(r"^(?P<pk>\d+)-?[\w|\s]*/?$", ProjectDetailView.as_view(), name="project_detail"),
