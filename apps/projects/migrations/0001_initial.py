@@ -11,7 +11,8 @@ class Migration(SchemaMigration):
         # Adding model 'Project'
         db.create_table(u'projects_project', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=500)),
+            ('slug', self.gf('django.db.models.fields.CharField')(max_length=2000, null=True, blank=True)),
             ('description', self.gf('django.db.models.fields.TextField')()),
             ('technologies', self.gf('django.db.models.fields.TextField')(default='To be determined, mentor will update')),
         ))
@@ -99,21 +100,23 @@ class Migration(SchemaMigration):
         },
         u'cities.city': {
             'Meta': {'object_name': 'City'},
-            'description': ('django.db.models.fields.TextField', [], {}),
+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'organizers': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['userprofile.UserProfile']", 'symmetrical': 'False'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
+            'organizers': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['userprofile.UserProfile']", 'symmetrical': 'False', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'})
         },
         u'cities.cohort': {
             'Meta': {'object_name': 'Cohort'},
             'city': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cities.City']"}),
-            'description': ('django.db.models.fields.TextField', [], {}),
-            'end_date': ('django.db.models.fields.DateField', [], {}),
+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'end_date': ('django.db.models.fields.DateField', [], {'default': 'None', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'members': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'cohort_members_set'", 'symmetrical': 'False', 'to': u"orm['userprofile.UserProfile']"}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'organizers': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'cohort_organizers_set'", 'symmetrical': 'False', 'to': u"orm['userprofile.UserProfile']"}),
-            'start_date': ('django.db.models.fields.DateField', [], {})
+            'members': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'cohort_members_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
+            'organizers': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'cohort_organizers_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
+            'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'}),
+            'start_date': ('django.db.models.fields.DateField', [], {'default': 'None', 'null': 'True', 'blank': 'True'})
         },
         u'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
@@ -124,13 +127,14 @@ class Migration(SchemaMigration):
         },
         u'projects.project': {
             'Meta': {'object_name': 'Project'},
-            'city': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.City']", 'symmetrical': 'False'}),
-            'cohort': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.Cohort']", 'symmetrical': 'False'}),
+            'city': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.City']", 'symmetrical': 'False', 'blank': 'True'}),
+            'cohort': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.Cohort']", 'symmetrical': 'False', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'members': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'project_members_set'", 'symmetrical': 'False', 'to': u"orm['userprofile.UserProfile']"}),
-            'mentors': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'project_mentors_set'", 'symmetrical': 'False', 'to': u"orm['userprofile.UserProfile']"}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'members': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'project_members_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
+            'mentors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'project_mentors_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
+            'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'}),
             'technologies': ('django.db.models.fields.TextField', [], {'default': "'To be determined, mentor will update'"})
         },
         u'userprofile.userprofile': {

@@ -266,6 +266,7 @@ INSTALLED_APPS = (
     "wiki.plugins.notifications", # for django-wiki
     "wiki.plugins.images", # for django-wiki
     "wiki.plugins.macros", # for django-wiki
+    "apps.core_stuff",
     "apps.cities",
     "apps.projects",
 )
