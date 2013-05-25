@@ -6,3 +6,6 @@ class UserProfile(models.Model):
     bio = models.TextField()
     tech_to_learn = models.TextField("Technologies I want to learn more about")
     tech_i_know = models.TextField("Technologies I know")
+
+    def __unicode__(self):
+        return self.user.username
