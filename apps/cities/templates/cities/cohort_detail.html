@@ -37,7 +37,7 @@
 
   <h3>Projects</h3>
   {% for project in cohort.project_set.all %}
-  <p style="width:750px"><a href="{% url "project_detail" project.pk %}-{{project.name}}/">{{project.name}}</a> - {{project.description}}</p>
+  <p style="width:750px"><a href="{% url "project_detail" project.pk %}-{{project.slug}}/">{{project.name}}</a> - {{project.description}}</p>
   {% endfor %}
 </div>
 
