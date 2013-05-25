@@ -34,9 +34,9 @@ class ProjectEditView(UpdateView):
 	template_name = "projects/edit.html"
 	form_class = ProjectForm
 	
-#success_url = reverse("project_detail",args=(pk,))
-#success_url = reverse("project_edit",args=(1,))
-#def form_valid(self,form):
+	def get_success_url(self):
+		a = reverse("project_detail",args=(self.object.pk,))
+		return a
 
 
 	###remove later
