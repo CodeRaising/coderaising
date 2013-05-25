@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import TemplateView
 
 from mezzanine.core.views import direct_to_template
-
+from views import calendar
 from .views import (
     CitiesListView,
     CityDetailView,
@@ -37,9 +37,26 @@ urlpatterns = patterns("",
         CohortListView.as_view(),
         name="cohort_list"
     ),
+    url(
+        r'^(?P<city>[\w-]+)/calendar/$',
+        "apps.cities.views.calendar"
+    ),
+    url(
+        r'^(?P<city>[\w-]+)/mentors/$',
+        "apps.cities.views.mentors"
+    ),
+    url(
+        r'^(?P<city>[\w-]+)/organizers/$',
+        "apps.cities.views.organizers"
+    ),
+    url(
+        r'^(?P<city>[\w-]+)/sponsors/$',
+        "apps.cities.views.sponsors"
+    ),
     url( # this view has not yet been built
         r"^(?P<city>[\w-]+)/(?P<cohort>[\w-]+)/$",
         CohortDetailView.as_view(),
         name="cohort_detail"
     ),
+
 )
