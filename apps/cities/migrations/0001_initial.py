@@ -11,8 +11,9 @@ class Migration(SchemaMigration):
         # Adding model 'City'
         db.create_table(u'cities_city', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('description', self.gf('django.db.models.fields.TextField')()),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=500)),
+            ('slug', self.gf('django.db.models.fields.CharField')(max_length=2000, null=True, blank=True)),
+            ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
         db.send_create_signal(u'cities', ['City'])
 
@@ -27,11 +28,12 @@ class Migration(SchemaMigration):
         # Adding model 'Cohort'
         db.create_table(u'cities_cohort', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('description', self.gf('django.db.models.fields.TextField')()),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=500)),
+            ('slug', self.gf('django.db.models.fields.CharField')(max_length=2000, null=True, blank=True)),
+            ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('city', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities.City'])),
-            ('start_date', self.gf('django.db.models.fields.DateField')()),
-            ('end_date', self.gf('django.db.models.fields.DateField')()),
+            ('start_date', self.gf('django.db.models.fields.DateField')(default=None, null=True, blank=True)),
+            ('end_date', self.gf('django.db.models.fields.DateField')(default=None, null=True, blank=True)),
         ))
         db.send_create_signal(u'cities', ['Cohort'])
 
@@ -101,21 +103,23 @@ class Migration(SchemaMigration):
         },
         u'cities.city': {
             'Meta': {'object_name': 'City'},
-            'description': ('django.db.models.fields.TextField', [], {}),
+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'organizers': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['userprofile.UserProfile']", 'symmetrical': 'False'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
+            'organizers': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['userprofile.UserProfile']", 'symmetrical': 'False', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'})
         },
         u'cities.cohort': {
             'Meta': {'object_name': 'Cohort'},
             'city': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cities.City']"}),
-            'description': ('django.db.models.fields.TextField', [], {}),
-            'end_date': ('django.db.models.fields.DateField', [], {}),
+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'end_date': ('django.db.models.fields.DateField', [], {'default': 'None', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'members': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'cohort_members_set'", 'symmetrical': 'False', 'to': u"orm['userprofile.UserProfile']"}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'organizers': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'cohort_organizers_set'", 'symmetrical': 'False', 'to': u"orm['userprofile.UserProfile']"}),
-            'start_date': ('django.db.models.fields.DateField', [], {})
+            'members': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'cohort_members_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
+            'organizers': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'cohort_organizers_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
+            'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'}),
+            'start_date': ('django.db.models.fields.DateField', [], {'default': 'None', 'null': 'True', 'blank': 'True'})
         },
         u'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
