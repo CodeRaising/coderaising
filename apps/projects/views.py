@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
+from django.core.urlresolvers import reverse
 
 from .models import Project
 from apps.userprofile.models import UserProfile
+from .forms import ProjectForm
 
 class ProjectIndexView(ListView):
 	model = Project
@@ -17,6 +19,8 @@ class ProjectDetailView(DetailView):
 	template_name = "projects/detail.html"
 #slug_field = "pk"
 #dslug_url_kwarg = "pk"
+
+	###remove later
 	def get_context_data(self, **kwargs):
 		"This is to print your context variables during testing ONLY"
 		context = super(ProjectDetailView, self).get_context_data(**kwargs)
@@ -26,7 +30,21 @@ class ProjectDetailView(DetailView):
 
 ###edit view???	
 class ProjectEditView(UpdateView):
-	pass
+	model = Project
+	template_name = "projects/edit.html"
+	form_class = ProjectForm
+	
+#success_url = reverse("project_detail",args=(pk,))
+#success_url = reverse("project_edit",args=(1,))
+#def form_valid(self,form):
+
+
+	###remove later
+	def get_context_data(self, **kwargs):
+		"This is to print your context variables during testing ONLY"
+		context = super(ProjectEditView, self).get_context_data(**kwargs)
+		print context
+		return context
 
 ###should this be a ListView instead with model = UserProfile???
 class ProjectUsersView(DetailView):

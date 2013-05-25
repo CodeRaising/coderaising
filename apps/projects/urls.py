@@ -20,10 +20,10 @@ urlpatterns = patterns("",
 	url(r"^propose_project$", ProjectProposeView.as_view(), name="propose_project"),
 
 	# project details url: /projects/(id)-(slug)/
-	url(r"^(?P<pk>\d+)-([\w|\s]+)/$", ProjectDetailView.as_view(), name="project_detail"),
+	url(r"^(?P<pk>\d+)-[\w|\s]+/$", ProjectDetailView.as_view(), name="project_detail"),
 	
 	# project edit page url: /projects/(id)-(slug)/edit-project
-	url(r"^(?P<project_id>\d+)-[\w]+/edit-project$", ProjectEditView.as_view(), name="project_edit"),
+	url(r"^(?P<pk>\d+)-[\w|\s]+/edit-project$", ProjectEditView.as_view(), name="project_edit"),
 
 	# project users list view url: /projects/(id)-(slug)/users
 	url(r"^(?P<pk>\d+)-([\w|\s]+)/users$", ProjectUsersView.as_view(), name="project_users"),
