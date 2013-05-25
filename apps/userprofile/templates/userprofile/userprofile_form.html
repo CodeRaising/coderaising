@@ -17,28 +17,11 @@
 
 
 {% block content %}
-<div class="row">
-  <div class="span5">
-      <h4><a href="#">Name 1</a></h4>
-      <p>Bio or headline information for profile</p>
-  </div>
-  <div class="span3">skills</div></div>
-<hr>
- 
-<div class="row">
-  <div class="span5">
-      <h4><a href="#">Name 2</a></h4>
-      <p>Bio or headline information for profile</p>
-  </div>
-  <div class="span3">skills</div></div>
-<hr>
- 
-<div class="row">
-  <div class="span5">
-      <h4><a href="#">Name 3</a></h4>
-      <p>Bio or headline information for profile</p>
-  </div>
-  <div class="span3">skills</div>
-</div>
-<hr>
+<form class="form-horizontal" action='.' method="POST">
+  {% csrf_token %}
+
+  {{form}}
+  <input type="submit" value="Update"/>
+
+</form>
 {% endblock %}

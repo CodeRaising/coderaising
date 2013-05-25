@@ -13,9 +13,7 @@ admin.autodiscover()
 # to the project's homepage.
 
 urlpatterns = patterns("",
-    url(r"^myprofile/$", TemplateView.as_view(template_name="profile.html"), name="myprofile"),
-    url(r"^profilelist/$", TemplateView.as_view(template_name="profilelist.html"), name="profilelist"),
-
+    url(r"^users/", include("apps.userprofile.urls")),
     url(r"^cities/", include("apps.cities.urls")),
     # once we compartmentalize the function into apps (profiles, projects, etc...)
     # it'll make sense to use include() and store the relevant urls within that app
