@@ -6,10 +6,10 @@
 
     {% if profile_url %}
         <a href="{{ profile_url }}">{{ request.user.username }}</a><br>
-        <a href="{% url "profile_update" %}"
+        <a href="{% url "userprofile_edit" %}"
             class="btn btn-small btn-account">{% trans "Update profile" %}</a>
     {% else %}
-        <a href="{% url "profile_update" %}">{{ request.user.username }}</a>
+        <a href="{% url "userprofile_edit" %}">{{ request.user.username }}</a>
     {% endif %}
     <a href="{% url "logout" %}?next={{ request.path }}"
         class="btn btn-small btn-danger btn-account">{% trans "Log out" %}</a>

@@ -4,6 +4,8 @@ import dj_database_url
 # MEZZANINE SETTINGS #
 ######################
 
+
+
 # The following settings are already defined with default values in
 # the ``defaults.py`` module within each of Mezzanine's apps, but are
 # common enough to be put here, commented out, for convenient
@@ -266,6 +268,7 @@ INSTALLED_APPS = (
     "wiki.plugins.notifications", # for django-wiki
     "wiki.plugins.images", # for django-wiki
     "wiki.plugins.macros", # for django-wiki
+    "apps.core_stuff",
     "apps.cities",
     "apps.projects",
 )
