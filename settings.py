@@ -235,6 +235,7 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.humanize", # for django-wiki
     "django.contrib.redirects",
     "django.contrib.sessions",
     "django.contrib.sites",
@@ -255,6 +256,17 @@ INSTALLED_APPS = (
     #"mezzanine.mobile",
     "mezzanine_events",
     "mezzanine_pagedown",
+    "south",
+    "django_notify", # for django-wiki
+    "mptt", # for django-wiki
+    "sekizai", # for django-wiki
+    "sorl.thumbnail", # for django-wiki
+    "wiki", # for django-wiki
+    "wiki.plugins.attachments", # for django-wiki
+    "wiki.plugins.notifications", # for django-wiki
+    "wiki.plugins.images", # for django-wiki
+    "wiki.plugins.macros", # for django-wiki
+    "apps.core_stuff",
     "apps.cities",
     "apps.projects",
 )
@@ -272,6 +284,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "sekizai.context_processors.sekizai", # for django-wiki
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -368,7 +381,9 @@ MZEVENTS_GOOGLE_MAPS_DOMAIN = "maps.google.com"
 # Whether the {% google_static_map %} template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones. Default: True.
 MZEVENTS_HIDPI_STATIC_MAPS = True 
 # The time zone that the event dates and times are in. Either this or the TIME_ZONE setting needs to be set.
-MZEVENTS_TIME_ZONE = "America/New_York" 
+MZEVENTS_TIME_ZONE = "America/New_York"
+
+LOGIN_URL = "/accounts/login/"
 
 if os.environ.get("RACK_ENV", None) == "production":
     import dj_database_url

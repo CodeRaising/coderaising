@@ -4,6 +4,8 @@ from django.views.generic import TemplateView
 
 from mezzanine.core.views import direct_to_template
 
+from wiki.urls import get_pattern as get_wiki_pattern
+from django_notify.urls import get_pattern as get_notify_pattern
 from apps.cities.views import ClassyDummyView
 
 admin.autodiscover()
@@ -15,6 +17,8 @@ admin.autodiscover()
 urlpatterns = patterns("",
     url(r"^users/", include("apps.userprofile.urls")),
     url(r"^cities/", include("apps.cities.urls")),
+
+	url(r"^projects/", include("apps.projects.urls")),
     # once we compartmentalize the function into apps (profiles, projects, etc...)
     # it'll make sense to use include() and store the relevant urls within that app
     # Here are four different ways to render a template:
@@ -54,6 +58,12 @@ urlpatterns = patterns("",
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     url(r"^admin/", include(admin.site.urls)),
+
+    # WIKI URLS
+    # ---------
+    (r'^wiki/notify/', get_notify_pattern()),
+    (r'^wiki/', get_wiki_pattern()),
+
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.

@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+
+{% block meta_title %}
+  CodeRaising Projects
+{% endblock %}
+
+{% block content %}
+<h1>Projects:</h1>
+
+<ul>
+{% for project in project_list %}
+	<li>
+		<a href="{% url "project_detail" project.pk project.name %}">
+		{{project.name}} 
+		</a>
+		<br />
+		<p> {{project.description}} </p>
+	</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
