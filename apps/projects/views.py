@@ -14,7 +14,7 @@ from .models import Project
 from .forms import ProjectForm
 from .utils import ProjectPermissions
 
-class ProjectIndexView(ListView):
+class ProjectIndexView(ProjectPermissions,ListView):
     model = Project
     template_name="projects/index.html"
 
