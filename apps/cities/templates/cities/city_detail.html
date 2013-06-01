@@ -8,15 +8,43 @@
 {% endblock %}
 
 
-{% block content %}
-<p>The city name is {{city.name}}</p>
+{% block canvas %}
+<div class="header">
+  <h1 style="display:run-in;padding-right:15px">CodeRaising {{city}}</h1>
+  {% ifequal city.name "Boston" %}
+  <p style="display:block"><em>A non-stop codejam in Beantown</em></p>
+  {% endifequal %}
+</div>
+<div class="navbar" style="padding:0px">
+  <div class="navbar-inner" style="padding-left:0px;padding-right:0px">
+    <div class="container">
+      <div class="nav-collapse">
+        <ul class="nav pull-left">
+          <li class="active"><a href="">Home</a></li>
+          <!--           <li class="dropdown"><a href="./current/">Current Class</a></li>
+          <li class="dropdown"><a href="./projects/">Upcoming Project</a></li>
+          <li class="dropdown"><a href="./calendar/">Calendar</a></li>
+          <li class="dropdown"><a href="./previous/">Previous Classes</a></li> -->
+          <li class="dropdown"><a href="./cohorts/">Cohorts</a></li>
+          <li class="dropdown"><a href="./calendar/">Calendar</a></li>
+          <li class="dropdown"><a href="./mentors/">Mentors</a></li>
+          <li class="dropdown"><a href="./organizers/">Organizers</a></li>
+          <li class="dropdown"><a href="./sponsors/">Sponsors</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>The city description is: {{city.description}}</p>
+<div class="container">
+  <p style="width:750px">{{city.description}}</p>
 
-<p>
-  Here are 
-  <a href="{% url "cohort_list" city.slug %}">
-    {{city.name}} cohorts
-  </a>
-</p>
+  <p>
+    Check out the {{city.name}}
+    <a href="{% url "cohort_list" city.slug %}">
+      cohorts
+    </a>!
+  </p>
+</div>
+
 {% endblock %}

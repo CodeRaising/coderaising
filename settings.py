@@ -4,6 +4,11 @@ import dj_database_url
 # MEZZANINE SETTINGS #
 ######################
 
+SITE_TAGLINE = "a continuous code jam..."
+SITE_TITLE = "CodeRaising"
+TWITTER_DEFAULT_QUERY = "@CodeRaising"
+TWITTER_DEFAULT_QUERY_TYPE = "user"
+
 # The following settings are already defined with default values in
 # the ``defaults.py`` module within each of Mezzanine's apps, but are
 # common enough to be put here, commented out, for convenient

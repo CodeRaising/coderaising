@@ -1,19 +1,15 @@
 {% extends "base.html" %}
 
+{% comment %}
+{% endcomment %}
 
 {% block meta_title %}
-  {# I'm using a variable here so this same template can be reused #}
-  {{city}} Cohorts
+  {{city}}
 {% endblock %}
 
 
 {% block canvas %}
-<div class="header">
-  <h1 style="display:run-in;padding-right:15px">CodeRaising {{city}}</h1>
-  {% ifequal city "Boston" %}
-  <p style="display:block"><em>A non-stop codejam in Beantown</em></p>
-  {% endifequal %}
-</div>
+<h1>CodeRaising {{cohort}}</h1><!-- <em>  A non-stop codejam in Beantown</em> -->
 <div class="navbar" style="padding:0px">
   <div class="navbar-inner" style="padding-left:0px;padding-right:0px">
     <div class="container">
@@ -34,17 +30,15 @@
     </div>
   </div>
 </div>
-<p style="width:750px">{{city.description}}</p>
 
 <div class="container">
-{% for cohort in cohort_list %}
-  <p>
-    {# the cohort_detail url captures two kwargs, so I'm using named args in my reverser to avoid ambiguity #}
-    <a href="{% url "cohort_detail" city=cohort.city.slug cohort=cohort.slug %}">
-      {{cohort.name}}
-    </a> - {{cohort.description}}
-  </p>
-{% endfor %}
+
+<p style="width:750px">{{cohort.description}}</p>
+
+  <h3>Projects</h3>
+  {% for project in cohort.project_set.all %}
+  <p style="width:750px"><a href="{% url "project_detail" project.pk %}-{{project.slug}}/">{{project.name}}</a> - {{project.description}}</p>
+  {% endfor %}
 </div>
 
 {% endblock %}

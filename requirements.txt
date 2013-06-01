@@ -14,6 +14,7 @@ cssmin==0.1.4
 distribute==0.6.24
 dj-database-url==0.2.1
 django-appconf==0.6
+django-braces==1.0.0
 django-classy-tags==0.4
 django-compressor==1.1.2
 django-debug-toolbar==0.9.4

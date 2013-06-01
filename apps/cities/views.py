@@ -4,7 +4,6 @@ from django.views.generic import TemplateView, ListView, DetailView
 from apps.core_stuff.views import DebugMixin
 from .models import City, Cohort
 
-
 class CitiesListView(ListView):
     """
     Definitely read up on ListView here:
@@ -61,18 +60,61 @@ class CohortListView(ListView):
         # get_queryset adds a city attribute to the class, which
         # we can use here to get the city name
         context['cohort_category'] = self.city.name
+        context['city'] = self.city.name
         return context
 
 
 class CohortDetailView(DetailView):
     # make this work
-    pass
+    # pass
+    model = Cohort
+    slug_url_kwarg = "cohort"
+    def get_context_data(self, **kwargs):
+        context = super(CohortDetailView, self).get_context_data(**kwargs)
+        slug = self.kwargs.get("city", None)
+        self.city = City.objects.get(slug=slug)
+        context['city'] = self.city.name
+        return context
+#     ProjectListView
+#     
+# class ProjectListView(ListView):
+#     model = Project
+#     
+#     def get_queryset(self):
+#         slug = self.kwargs.get("cohort", None)
+#         self.cohort = Cohort.objects.get(slug=slug)
+#         queryset = super(ProjectListView, self).get_queryset()
+#         return queryset.filter(cohort=self.cohort)
+#     
+#     def get_context_data(self, **kwargs):
+#         context = super(ProjectListView, self).get_context_data(**kwargs)
+#         context['cohort'] = self.cohort.name
+#         return context
 
 
+def calendar(request,**kwargs):
+    # city = "Boston"
+    for key in kwargs:
+        city = kwargs.get(key).capitalize()
+    return render(request, 'cities/calendar.html', {'city': city})
 
+def mentors(request,**kwargs):
+    # city = "Boston"
+    for key in kwargs:
+        city = kwargs.get(key).capitalize()
+    return render(request, 'cities/mentors.html', {'city': city})
 
+def organizers(request,**kwargs):
+    # city = "Boston"
+    for key in kwargs:
+        city = kwargs.get(key).capitalize()
+    return render(request, 'cities/organizers.html', {'city': city})
 
-
+def sponsors(request,**kwargs):
+    # city = "Boston"
+    for key in kwargs:
+        city = kwargs.get(key).capitalize()
+    return render(request, 'cities/sponsors.html', {'city': city})
 
 ####################################
 # Old stuff below this line        #

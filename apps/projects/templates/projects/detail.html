@@ -33,7 +33,12 @@
 	{% endfor %}
 </ul>
 
+<br />
 
+
+{% if request.user.userprofile in project.mentors.all or request.user.is_staff %}
+    <a href="{% url "project_edit" project.pk %}">Edit Project </a>
+{% endif %}
 
 
 {% endblock %}
