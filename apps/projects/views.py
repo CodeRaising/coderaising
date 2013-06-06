@@ -8,6 +8,8 @@ from django.views.generic import (  TemplateView,
                                  )
 from django.core.urlresolvers import reverse
 
+from braces.views import LoginRequiredMixin
+
 from apps.userprofile.models import UserProfile
 from apps.core_stuff.views import DebugMixin
 
@@ -19,7 +21,7 @@ class ProjectIndexView(ProjectPermissions,ListView):
     model = Project
     template_name="projects/index.html"
 
-class ProjectProposeView(CreateView):
+class ProjectProposeView(LoginRequiredMixin, CreateView):
     model = Project
     template_name="projects/propose.html"
     form_class = ProjectForm
@@ -34,7 +36,7 @@ class ProjectDetailView(DetailView):
 
     def post(self, request, *args, **kwargs):
         proj = self.get_object()
-        if not request.user.username:
+        if not request.user.is_authenticated():
        		#redirects to project detail page after signin, user needs to click apply button again
             #should user application be automatically be taken care of after successful login??? 
             url = "/accounts/login?next=" + reverse("project_detail",args=(proj.pk,proj.slug))
