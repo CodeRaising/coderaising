@@ -10,9 +10,11 @@ from .models import UserProfile
 class ProfileListView(ListView):
     model = UserProfile
 
+
 class ProfileDetailView(DetailView):
     model = UserProfile
     pk_url_kwarg = 'user'
+
 
 class ProfileEditView(UpdateView):
     model = UserProfile
