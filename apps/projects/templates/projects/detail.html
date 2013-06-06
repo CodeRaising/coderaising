@@ -13,6 +13,10 @@
 	<div class="alert alert-error"> Project not approved </div>
 {% endif %}
 
+{% if request.user.userprofile in project.applicants.all %}
+	<div class="alert alert-success"> Your application has been submitted for this group </div> 
+{% endif %}
+
 <h3>Description</h3>
 <p>
 	{{project.description}}
@@ -43,6 +47,11 @@
 {% if request.user.userprofile in project.mentors.all or request.user.is_staff %}
     <a href="{% url "project_edit" project.pk %}">Edit Project </a>
 {% endif %}
+
+<form action="." method="POST">
+	{% csrf_token %}
+	<input type="Submit" value="Apply to Project" />
+</form>
 
 
 {% endblock %}

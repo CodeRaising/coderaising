@@ -12,7 +12,7 @@
 {% for project in project_list %}
 	{% if project.is_approved  or request.user.is_staff %}
 		<li>
-			<a href="{% url "project_detail" project.pk %}-{{ project.slug }}">
+			<a href="{% url "project_detail" project.pk project.slug %}">
 			{{project.name}} 
 			</a>
 			{% if request.user.is_staff and not project.is_approved %}

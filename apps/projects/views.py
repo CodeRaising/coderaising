@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.views.generic import (  TemplateView, 
                                     ListView, 
                                     DetailView, 
@@ -31,6 +32,21 @@ class ProjectDetailView(DetailView):
     model = Project
     template_name = "projects/detail.html"
 
+    def post(self, request, *args, **kwargs):
+        proj = self.get_object()
+        if not request.user.username:
+       		#redirects to project detail page after signin, user needs to click apply button again
+            #should user application be automatically be taken care of after successful login??? 
+            url = "/accounts/login?next=" + reverse("project_detail",args=(proj.pk,proj.slug))
+            return HttpResponseRedirect(url)
+        else:
+            if request.user.userprofile not in proj.applicants.all():
+                proj.applicants.add(request.user.userprofile)
+                #proj.save() #is this needed???
+            
+            return HttpResponseRedirect(reverse("project_detail",args=(proj.pk,proj.slug)))
+
+
 
 class ProjectEditView(ProjectPermissions, UpdateView):
     model = Project
@@ -38,8 +54,7 @@ class ProjectEditView(ProjectPermissions, UpdateView):
     form_class = ProjectForm
     
     def get_success_url(self):
-        a = reverse("project_detail",args=(self.object.pk,))
-        return a
+        return reverse("project_detail",args=(self.object.pk,))
 
 
 ###should this be a ListView instead with model = UserProfile???
