@@ -5,7 +5,7 @@
     {% url "profile" request.user.username as profile_url %}
 
     {% if profile_url %}
-        <a href="{{ profile_url }}">{{ request.user.username }}</a><br>
+        <a href="{{ userprofile_detail }}">{{ request.user.username }}</a><br>
         <a href="{% url "userprofile_edit" %}"
             class="btn btn-small btn-account">{% trans "Update profile" %}</a>
     {% else %}
