@@ -262,6 +262,7 @@ INSTALLED_APPS = (
     "mezzanine_events",
     "mezzanine_pagedown",
     "south",
+    "taggit", #for django tags
     "django_notify", # for django-wiki
     "mptt", # for django-wiki
     "sekizai", # for django-wiki

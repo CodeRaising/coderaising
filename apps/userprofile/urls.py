@@ -1,15 +1,29 @@
-from django.conf.urls.defaults import patterns, include, url
-from django.views.generic import TemplateView
-
-from mezzanine.core.views import direct_to_template
-
+from django.conf.urls.defaults import patterns, url
 from .views import (
     ProfileListView,
+    SkillsListView,
+    LearnListView,
     ProfileDetailView,
     ProfileEditView,
-    )
+)
 
-urlpatterns = patterns("",
+urlpatterns = patterns(
+    "",
+    url(
+        r"^$",
+        ProfileListView.as_view(),
+        name="userprofile_list"
+    ),
+    url(
+        r"^skills/(?P<skills>[\w-]+)/$",
+        SkillsListView.as_view(),
+        name="userprofile_skills_list"
+    ),
+    url(
+        r"^wanttolearn/(?P<learn>[\w-]+)/$",
+        LearnListView.as_view(),
+        name="userprofile_learn_list"
+    ),
     url(
         r"^$",
         ProfileListView.as_view(),
