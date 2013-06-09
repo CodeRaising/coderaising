@@ -24,8 +24,17 @@
       <h4><a href="{% url "userprofile_detail" user.id %}">{{user.user}}</a></h4>
       <p>{{user.bio}}</p>
   </div>
-  <div class="span3">Skills: {{user.tech_i_know}}</div>
-  <div class="span3">Skills I would like to learn: {{user.tech_to_learn}}</div>
+  <div class="span6">Skills: 
+  {% for tag in user.skills.all %}
+    <a href="{% url "userprofile_skills_list" tag %}" class="label">{{tag}}</a>
+  {% endfor %}
+  </div>
+  <br>
+  <div class="span6">Skills I would like to learn:
+  {% for tag in user.learn.all %}
+    <a href="{% url "userprofile_learn_list" tag %}" class="label label-success">{{tag}}</a>
+  {% endfor %}
+  </div>
 </div>
 <hr>
 {% endfor %}
