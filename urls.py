@@ -18,7 +18,7 @@ urlpatterns = patterns("",
     url(r"^users/", include("apps.userprofile.urls")),
     url(r"^cities/", include("apps.cities.urls")),
 
-	url(r"^projects/", include("apps.projects.urls")),
+    url(r"^projects/", include("apps.projects.urls")),
     # once we compartmentalize the function into apps (profiles, projects, etc...)
     # it'll make sense to use include() and store the relevant urls within that app
     # Here are four different ways to render a template:

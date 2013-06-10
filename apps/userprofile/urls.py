@@ -25,11 +25,6 @@ urlpatterns = patterns(
         name="userprofile_learn_list"
     ),
     url(
-        r"^$",
-        ProfileListView.as_view(),
-        name="userprofile_list"
-    ),
-    url(
         r"^edit/$",
         ProfileEditView.as_view(),
         name="userprofile_edit"
