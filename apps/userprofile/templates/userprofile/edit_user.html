@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block meta_title %}
+  Profile
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/dummy.css">
+{% endblock %}
+
+
+{% block content %}
+<h2>{{userprofile.user.username}}</h2>
+<form class="form-horizontal" action='.' method="POST">
+  {% csrf_token %}
+
+  {{user_form}}
+  {{userprofile_form}}
+  <br>
+  <input type="submit" value="Update"/>
+
+</form>
+{% endblock %}

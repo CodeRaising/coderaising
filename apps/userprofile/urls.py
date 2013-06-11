@@ -5,6 +5,7 @@ from .views import (
     LearnListView,
     ProfileDetailView,
     ProfileEditView,
+    UserEditView
 )
 
 urlpatterns = patterns(
@@ -24,9 +25,14 @@ urlpatterns = patterns(
         LearnListView.as_view(),
         name="userprofile_learn_list"
     ),
+    # url(
+    #     r"^edit/$",
+    #     ProfileEditView.as_view(),
+    #     name="userprofile_edit"
+    # ),
     url(
         r"^edit/$",
-        ProfileEditView.as_view(),
+        UserEditView.as_view(),
         name="userprofile_edit"
     ),
     url(

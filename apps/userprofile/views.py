@@ -1,10 +1,14 @@
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, FormView
+from django.http import HttpResponseRedirect
+
+from braces.views import LoginRequiredMixin
 
 from .models import UserProfile
+from .forms import UserForm, UserProfileForm
 
 
 class ProfileListView(ListView):
@@ -42,3 +46,45 @@ class ProfileEditView(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ProfileEditView, self).dispatch(*args, **kwargs)
+
+
+class UserEditView(LoginRequiredMixin, FormView):
+    template_name = "userprofile/edit_user.html"
+
+    def get_form_kwargs(self, obj):
+        kwargs = {'instance': obj}
+        if self.request.method in ('POST', 'PUT'):
+            kwargs.update({
+            'data': self.request.POST,
+            'files': self.request.FILES,
+            })
+        return kwargs
+
+    def get_user_forms(self):
+        self.user_form = UserForm(
+            **self.get_form_kwargs(self.request.user)
+        )
+        self.userprofile_form = UserProfileForm(
+            **self.get_form_kwargs(self.request.user.userprofile)
+        )
+
+    def render_forms(self):
+        context = self.get_context_data(
+            user_form=self.user_form,
+            userprofile_form=self.userprofile_form
+        )
+        return self.render_to_response(context)
+
+    def get(self, request, *args, **kwargs):
+        self.get_user_forms()
+        return self.render_forms()
+
+    def post(self, request, *args, **kwargs):
+        self.get_user_forms()
+        if self.user_form.is_valid() and self.userprofile_form.is_valid():
+            self.user_form.save()
+            self.userprofile_form.save()
+            url = reverse( 'userprofile_detail', args=(self.request.user.userprofile.pk,) )
+            return HttpResponseRedirect(url)
+        else:
+            return self.render_forms()

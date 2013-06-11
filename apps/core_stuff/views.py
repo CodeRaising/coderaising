@@ -17,9 +17,9 @@ class DebugMixin(object):
         print "#########################"
         print "CONTEXT SENT TO TEMPLATE:"
         for k, v in context.items():
-            print "  %s: %s" % (k, v)
+            print "  %s: %s\n" % (k, v)
         print "DON'T FORGET TO REMOVE THIS MIXIN AFTER TESTING THE VIEW"
-        print "#########################"        
+        print "#########################"
         return context
 
 
