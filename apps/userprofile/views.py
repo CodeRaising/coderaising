@@ -1,5 +1,4 @@
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView
-from django.shortcuts import get_object_or_404
+from django.views.generic import ListView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
