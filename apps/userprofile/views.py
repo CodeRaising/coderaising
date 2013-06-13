@@ -13,6 +13,15 @@ from .forms import UserForm, UserProfileForm
 class ProfileListView(ListView):
     model = UserProfile
 
+    def get_queryset(self):
+        profiles = super(ProfileListView, self).get_queryset()
+        filters = self.request.GET
+        if "learn" in filters:
+            profiles = profiles.filter(learn__name__in=[filters["learn"]])
+        if "skills" in filters:
+            profiles = profiles.filter(skills__name__in=[filters["skills"]])
+        return profiles
+
 
 class SkillsListView(ProfileListView):
     context_object_name = 'userprofile_list'
