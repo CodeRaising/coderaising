@@ -3,6 +3,7 @@ from taggit.managers import TaggableManager
 from apps.userprofile.models import UserProfile
 from apps.core_stuff.models import NamedSlugged
 
+
 class Project(NamedSlugged):
     """
     A team of people working on one project.

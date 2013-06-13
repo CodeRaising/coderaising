@@ -1,8 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 from .views import (
     ProfileListView,
-    SkillsListView,
-    LearnListView,
     ProfileDetailView,
     ProfileEditView,
     UserEditView
