@@ -1,5 +1,5 @@
 from django.db import models
-
+from taggit.managers import TaggableManager
 from apps.userprofile.models import UserProfile
 from apps.core_stuff.models import NamedSlugged
 
@@ -11,7 +11,7 @@ class Project(NamedSlugged):
     description = models.TextField()
     # demo_link = models.URLField(blank=True, null=True)
     # image = models.ImageField()
-    technologies = models.TextField(default="To be determined, mentor will update")
+    technologies = TaggableManager(verbose_name="Technologies", blank=True)
     cohort = models.ManyToManyField('cities.Cohort', blank=True)
     city = models.ManyToManyField('cities.City', blank=True)
     is_approved = models.BooleanField(default=False)

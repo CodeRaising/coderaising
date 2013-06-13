@@ -26,13 +26,13 @@
   </div>
   <div class="span6">Skills: 
   {% for tag in user.skills.all %}
-    <a href="{% url "userprofile_skills_list" tag %}" class="label">{{tag}}</a>
+    <a href="{% url "userprofile_list" %}?skills={{tag}}" class="label">{{tag}}</a>
   {% endfor %}
   </div>
   <br>
   <div class="span6">Skills I would like to learn:
   {% for tag in user.learn.all %}
-    <a href="{% url "userprofile_learn_list" tag %}" class="label label-success">{{tag}}</a>
+    <a href="{% url "userprofile_list" %}?learn={{tag}}" class="label label-success">{{tag}}</a>
   {% endfor %}
   </div>
 </div>
