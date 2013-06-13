@@ -17,24 +17,10 @@ class ProfileListView(ListView):
         profiles = super(ProfileListView, self).get_queryset()
         filters = self.request.GET
         if "learn" in filters:
-            profiles = profiles.filter(learn__name__in=[filters["learn"]])
+            profiles = profiles.filter(learn__name__in=[filters["learn"]]).distinct()
         if "skills" in filters:
-            profiles = profiles.filter(skills__name__in=[filters["skills"]])
+            profiles = profiles.filter(skills__name__in=[filters["skills"]]).distinct()
         return profiles
-
-
-class SkillsListView(ProfileListView):
-    context_object_name = 'userprofile_list'
-
-    def get_queryset(self):
-        return UserProfile.objects.filter(skills__name__in=[self.kwargs['skills']]).distinct()
-
-
-class LearnListView(ProfileListView):
-    context_object_name = 'userprofile_list'
-
-    def get_queryset(self):
-        return UserProfile.objects.filter(learn__name__in=[self.kwargs['learn']]).distinct()
 
 
 class ProfileDetailView(DetailView):
