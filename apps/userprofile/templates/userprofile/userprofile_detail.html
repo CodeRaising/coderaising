@@ -31,13 +31,13 @@ Bio: <p>{{userprofile.bio}}</p><br>
 
 Technologies I Know: <p>
   {% for tag in userprofile.skills.all %}
-    <a href="{% url "userprofile_skills_list" tag %}" class="label">{{tag}}</a>
+    <a href="{% url "userprofile_list" %}?skills={{tag}}" class="label">{{tag}}</a>
   {% endfor %}
 </p><br>
 
 Technologies I Want To Learn More About: <p>
   {% for tag in userprofile.learn.all %}
-    <a href="{% url "userprofile_learn_list" tag %}" class="label label-success">{{tag}}</a>
+    <a href="{% url "userprofile_list" %}?learn={{tag}}" class="label label-success">{{tag}}</a>
   {% endfor %}
 </p><br>
 

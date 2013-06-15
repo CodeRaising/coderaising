@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block meta_title %}
-	{{project.name}} - CodeRaising Projects 
+    {{project.name}} - CodeRaising Projects 
 {% endblock %}
 
 {% block content %}
@@ -10,35 +10,37 @@
 <h1>{{project.name}}</h1>
 <hr />
 {% if not project.is_approved %}
-	<div class="alert alert-error"> Project not approved </div>
+    <div class="alert alert-error"> Project not approved </div>
 {% endif %}
 
 {% if request.user.userprofile in project.applicants.all %}
-	<div class="alert alert-success"> Your application has been submitted for this group </div> 
+    <div class="alert alert-success"> Your application has been submitted for this group </div> 
 {% endif %}
 
 <h3>Description</h3>
 <p>
-	{{project.description}}
+    {{project.description}}
 </p>
 
 <h3>Technologies Used:</h3>
 <p>
-	{{project.technologies}}
+  {% for tag in project.technologies.all %}
+    <a href="{% url "project_index" %}?tech={{tag}}" class="label label-info">{{tag}}</a>
+  {% endfor %}
 <p>
 
 <h3>Mentor(s):</h3>
 <ul>
-	{% for mentor in project.mentors.all %}
-	<li> <a href="{% url "userprofile_detail" mentor.pk %}" > {{mentor.user}}</a></li>
-	{% endfor %}
+    {% for mentor in project.mentors.all %}
+    <li> <a href="{% url "userprofile_detail" mentor.pk %}" > {{mentor.user}}</a></li>
+    {% endfor %}
 </ul>
 
 <h3>Mentees:</h3>
 <ul>
-	{% for mentee in project.members.all %}
-	<li> <a href="{% url "userprofile_detail" mentee.pk %}"> {{mentee.user}} </a></li>
-	{% endfor %}
+    {% for mentee in project.members.all %}
+    <li> <a href="{% url "userprofile_detail" mentee.pk %}"> {{mentee.user}} </a></li>
+    {% endfor %}
 </ul>
 
 <br />
@@ -49,8 +51,8 @@
 {% endif %}
 
 <form action="." method="POST">
-	{% csrf_token %}
-	<input type="Submit" value="Apply to Project" />
+    {% csrf_token %}
+    <input type="Submit" value="Apply to Project" />
 </form>
 
 

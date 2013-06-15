@@ -263,6 +263,7 @@ INSTALLED_APPS = (
     "mezzanine_pagedown",
     "south",
     "taggit", #for django tags
+    # "taggit_autosuggest",
     "django_notify", # for django-wiki
     "mptt", # for django-wiki
     "sekizai", # for django-wiki
