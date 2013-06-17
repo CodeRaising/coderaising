@@ -4,8 +4,8 @@ from django.core.exceptions import PermissionDenied
 class ProjectPermissions(object):
     """
     Blocks access to a view.  Default implementation only allows
-    project mentors access to the view.  To allow any accepted
-    members, set permission_required = "member" in your view
+    project mentors and staff access to the view.  To allow any
+    accepted members, set permission_required = "member" in your view
     """
     permission_required = "mentor"
 

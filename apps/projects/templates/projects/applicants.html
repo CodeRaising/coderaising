@@ -1,1 +1,32 @@
-applicants
+{% extends "base.html" %}
+
+{% block meta_title %}
+Applicants | {{project.name}}
+{% endblock %}
+
+{% block content %}
+
+<h2>Project Applicants</h2>
+<p>
+  Select applicants to accept them as members of this project.  Please note that only site staff can un-accept someone.
+</p>
+
+<form method="POST">{% csrf_token %}
+
+  <ul class="unstyled">
+  {% for applicant in project.applicants.all %}
+    <label class="checkbox" style="background-color:#eee;">
+      <input type="checkbox" name="applicants" value="{{applicant.pk}}">
+      <a href="{% url "userprofile_detail" applicant.pk %}">
+        {{applicant}}
+      </a>
+       - {{applicant.user.first_name}} {{applicant.user.last_name}}
+    </label>
+  {% endfor %}
+  </ul>
+
+  <input type="Submit" value="Approve Selected Applicants" />
+
+</form>
+
+{% endblock content %}

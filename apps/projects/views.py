@@ -3,7 +3,7 @@ from django.views.generic import (
     ListView,
     DetailView,
     UpdateView,
-    CreateView
+    CreateView,
 )
 from django.core.urlresolvers import reverse
 from braces.views import LoginRequiredMixin
@@ -42,7 +42,7 @@ class ProjectDetailView(DetailView):
         proj = self.get_object()
         if not request.user.is_authenticated():
        		#redirects to project detail page after signin, user needs to click apply button again
-            #should user application be automatically be taken care of after successful login??? 
+            #should user application be automatically be taken care of after successful login???
             url = "/accounts/login?next=" + reverse("project_detail", args=(proj.pk, proj.slug))
             return HttpResponseRedirect(url)
         else:
@@ -59,6 +59,29 @@ class ProjectEditView(ProjectPermissions, UpdateView):
 
     def get_success_url(self):
         return reverse("project_detail", args=(self.object.pk,))
+
+
+class ProjectApplicants(ProjectPermissions, DetailView):
+    """
+    Lets project mentors and site staff view and approve applicants
+    to a project.  Currently this list is sorted by userprofile pk;
+    we need to use a "through" field to store "datetime applied" on
+    the relationship to sort by the order in which applicants applied.
+    """
+    template_name = "projects/applicants.html"
+    model = Project
+
+    def post(self, request, *args, **kwargs):
+        project = self.get_object()
+        accepted = request.POST.getlist("applicants")
+        if accepted:
+            for pk in accepted:
+                applicant = UserProfile.objects.get(pk=pk)
+                # remove from applicants list
+                project.applicants.remove(applicant)
+                # add to members list
+                project.members.add(applicant)
+        return HttpResponseRedirect(reverse("project_detail", args=(project.pk, project.slug)))
 
 
 ###should this be a ListView instead with model = UserProfile???

@@ -7,7 +7,8 @@ from .views import (
     ProjectEditView,
     ProjectUsersView,
     ProjectApplyView,
-    ProjectApplicantsView
+    ProjectApplicantsView,
+    ProjectApplicants,
 )
 #from projects import views
 #from apps.projects import views
@@ -30,6 +31,8 @@ urlpatterns = patterns("",
 
     # apply to project url: /projects/(id)-(slug)/apply-to-project
     url(r"^(?P<project_id>\d+)-?[\w|\s|-]*/apply-to-project/$", ProjectApplyView.as_view(), name="project_apply"),
+
+    url(r"^(?P<pk>\d+)(?:-(?P<slug>[\w|\s|-]+))?/applicants/$", ProjectApplicants.as_view(), name="project_applicants"),
 
     # view applicants url: /projects/(id)-(slug)/view-applicants
 #url(r"^(?P<project_id>\d+)-?[\w]*/view-applicants$", ProjectApplicantsView.as_view(), name="project_applicants"),
