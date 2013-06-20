@@ -18,7 +18,7 @@
             {% if request.user.is_staff and not project.is_approved %}
                 <div class="alert alert-error"> Project not approved </div>
             {% endif %}
-            <pre> {{project.description}} </pre>
+            <pre class="reset-bg"> {{project.description}} </pre>
             Technologies for this project: 
               {% for tag in project.technologies.all %}
                 <a href="{% url "project_index" %}?tech={{tag}}" class="label label-info">{{tag}}</a>
