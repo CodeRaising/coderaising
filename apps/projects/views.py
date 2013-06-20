@@ -31,7 +31,8 @@ class ProjectProposeView(LoginRequiredMixin, CreateView):
     form_class = ProjectForm
 
     def get_success_url(self):
-        return reverse("project_detail", args=(self.object.pk,))
+        obj = self.object
+        return reverse("project_detail", args=(obj.pk,obj.slug))
 
 
 class ProjectDetailView(DetailView):
