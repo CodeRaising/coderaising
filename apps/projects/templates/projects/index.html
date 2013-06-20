@@ -8,26 +8,28 @@
 {% block content %}
 <h1>Projects:</h1>
 
-<ul>
+
 {% for project in project_list %}
     {% if project.is_approved  or request.user.is_staff %}
-        <li>
-            <a href="{% url "project_detail" project.pk project.slug %}">
+        <h2>
+             <a href="{% url "project_detail" project.pk project.slug %}">
             {{project.name}} 
             </a>
+        </h2>    
             {% if request.user.is_staff and not project.is_approved %}
                 <div class="alert alert-error"> Project not approved </div>
             {% endif %}
+        <blockquote>
             <pre class="reset-bg"> {{project.description}} </pre>
             Technologies for this project: 
-              {% for tag in project.technologies.all %}
+            {% for tag in project.technologies.all %}
                 <a href="{% url "project_index" %}?tech={{tag}}" class="label label-info">{{tag}}</a>
-              {% endfor %}
-
-        </li>
+            {% endfor %}
+        </blockquote>
+        
     {% endif %}
 {% endfor %}
-</ul>
+
 
 <br />
 <a href="{% url "project_propose" %}"> Propse your own project </a>
