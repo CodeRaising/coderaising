@@ -14,7 +14,7 @@ class Migration(SchemaMigration):
             ('name', self.gf('django.db.models.fields.CharField')(max_length=500)),
             ('slug', self.gf('django.db.models.fields.CharField')(max_length=2000, null=True, blank=True)),
             ('description', self.gf('django.db.models.fields.TextField')()),
-            ('technologies', self.gf('django.db.models.fields.TextField')(default='To be determined, mentor will update')),
+            ('is_approved', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal(u'projects', ['Project'])
 
@@ -33,6 +33,14 @@ class Migration(SchemaMigration):
             ('city', models.ForeignKey(orm[u'cities.city'], null=False))
         ))
         db.create_unique(u'projects_project_city', ['project_id', 'city_id'])
+
+        # Adding M2M table for field applicants on 'Project'
+        db.create_table(u'projects_project_applicants', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('project', models.ForeignKey(orm[u'projects.project'], null=False)),
+            ('userprofile', models.ForeignKey(orm[u'userprofile.userprofile'], null=False))
+        ))
+        db.create_unique(u'projects_project_applicants', ['project_id', 'userprofile_id'])
 
         # Adding M2M table for field members on 'Project'
         db.create_table(u'projects_project_members', (
@@ -60,6 +68,9 @@ class Migration(SchemaMigration):
 
         # Removing M2M table for field city on 'Project'
         db.delete_table('projects_project_city')
+
+        # Removing M2M table for field applicants on 'Project'
+        db.delete_table('projects_project_applicants')
 
         # Removing M2M table for field members on 'Project'
         db.delete_table('projects_project_members')
@@ -127,23 +138,48 @@ class Migration(SchemaMigration):
         },
         u'projects.project': {
             'Meta': {'object_name': 'Project'},
+            'applicants': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'project_applicants_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
             'city': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.City']", 'symmetrical': 'False', 'blank': 'True'}),
             'cohort': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.Cohort']", 'symmetrical': 'False', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_approved': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'members': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'project_members_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
             'mentors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'project_mentors_set'", 'blank': 'True', 'to': u"orm['userprofile.UserProfile']"}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
-            'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'}),
-            'technologies': ('django.db.models.fields.TextField', [], {'default': "'To be determined, mentor will update'"})
+            'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'})
+        },
+        u'taggit.tag': {
+            'Meta': {'object_name': 'Tag'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'})
+        },
+        u'taggit.taggeditem': {
+            'Meta': {'object_name': 'TaggedItem'},
+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'taggit_taggeditem_tagged_items'", 'to': u"orm['contenttypes.ContentType']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'object_id': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'}),
+            'tag': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'taggit_taggeditem_items'", 'to': u"orm['taggit.Tag']"})
+        },
+        u'userprofile.learntag': {
+            'Meta': {'object_name': 'LearnTag'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'})
+        },
+        u'userprofile.learntaggeditem': {
+            'Meta': {'object_name': 'LearnTaggedItem'},
+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'userprofile_learntaggeditem_tagged_items'", 'to': u"orm['contenttypes.ContentType']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'object_id': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'}),
+            'tag': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'learn'", 'to': u"orm['userprofile.LearnTag']"})
         },
         u'userprofile.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
             'bio': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'signup_date': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'tech_i_know': ('django.db.models.fields.TextField', [], {}),
-            'tech_to_learn': ('django.db.models.fields.TextField', [], {}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
         }
     }
