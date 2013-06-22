@@ -14,6 +14,7 @@ cssmin==0.1.4
 distribute==0.6.24
 dj-database-url==0.2.1
 django-appconf==0.6
+django-braces==1.0.0
 django-classy-tags==0.4
 django-compressor==1.1.2
 django-debug-toolbar==0.9.4
@@ -21,7 +22,7 @@ django-extensions==1.0.3
 django-mptt==0.5.5
 django-sekizai==0.6.1
 django-storages==1.1.6
-django-taggit==0.10a1
+django-taggit==0.9.4
 filebrowser-safe==0.2.27
 geopy==0.94.2
 gevent==0.13.7
