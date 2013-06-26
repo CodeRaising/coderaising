@@ -24,22 +24,26 @@
 <!-- <img style="margin-right:20px;" src="http://www.gravatar.com/avatar/17eec5e3a2218193fc20744616f4bcd3?s=128"> -->
 
 </div>
-<h2>{{userprofile.user.username}}</h2>
+<h1>{{userprofile.user.username}}</h1>
 <div style="float:left;">
-
-Bio: <p>{{userprofile.bio}}</p><br>
-
-Technologies I Know: <p>
+<div>
+  <h4>Name:</h4> {{userprofile.user.first_name}} {{userprofile.user.last_name|slice:":1"}}.
+</div>
+<div>
+  <h4>Bio:</h4> {{userprofile.bio}}
+</div>
+<div>
+  <h4>Technologies I Know:</h4>
   {% for tag in userprofile.skills.all %}
     <a href="{% url "userprofile_list" %}?skills={{tag}}" class="label">{{tag}}</a>
   {% endfor %}
-</p><br>
-
-Technologies I Want To Learn More About: <p>
+</div>
+<div>
+<h4>Technologies I Want To Learn More About:</h4>
   {% for tag in userprofile.learn.all %}
     <a href="{% url "userprofile_list" %}?learn={{tag}}" class="label label-success">{{tag}}</a>
   {% endfor %}
-</p><br>
+</div>
 
 
 

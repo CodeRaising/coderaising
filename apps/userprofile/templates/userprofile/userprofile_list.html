@@ -21,8 +21,15 @@
 {% for user in userprofile_list %}
 <div class="row">
   <div class="span5">
+    <div>
       <h4><a href="{% url "userprofile_detail" user.id %}">{{user.user}}</a></h4>
-      <p>{{user.bio}}</p>
+    </div>
+    <div>
+      <p>Name: {{user.user.first_name}} {{user.user.last_name|slice:":1"}}.</p>
+    </div>
+    <div>
+      <p>Bio: {{user.bio}}</p>
+    </div>
   </div>
   <div class="span6">Skills: 
   {% for tag in user.skills.all %}
