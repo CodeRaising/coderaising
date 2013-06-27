@@ -1,20 +1,8 @@
 {% extends "base.html" %}
 
-{% comment %}
-  Look at base.html and look at what content blocks are available (ctrl+f block). Inherit any you want to override.  The main two are {% block canvas %} and {% block content %}.  Canvas contains everything in between the navbar and the footer, and content contains the middle column.
-
-  Put static files (css, js, and images) into the appropriate folder in apps/theme/static/
-  I have a simple file in there as an example that I'm using to style this template
-{% endcomment %}
-
 {% block meta_title %}
   Profile
 {% endblock %}
-
-{% block extra_css %}
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/dummy.css">
-{% endblock %}
-
 
 {% block content %}
 <h2>{{userprofile.user.username}}</h2>

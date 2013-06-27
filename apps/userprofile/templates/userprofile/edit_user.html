@@ -4,11 +4,6 @@
   Profile
 {% endblock %}
 
-{% block extra_css %}
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/dummy.css">
-{% endblock %}
-
-
 {% block content %}
 <div class="container" style="max-width: 800px; margin: 0px auto 20px;">
 <h2 style="text-align:center;">{{ request.user.username }}</h2>
