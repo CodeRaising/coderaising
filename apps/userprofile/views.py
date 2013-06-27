@@ -28,7 +28,7 @@ class ProfileDetailView(DetailView):
     pk_url_kwarg = 'user'
 
 
-class ProfileEditView(UpdateView):
+class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = UserProfile
 
     def get_success_url(self):
@@ -36,11 +36,6 @@ class ProfileEditView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user.userprofile
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ProfileEditView, self).dispatch(*args, **kwargs)
-
 
 class UserEditView(LoginRequiredMixin, FormView):
     template_name = "userprofile/edit_user.html"

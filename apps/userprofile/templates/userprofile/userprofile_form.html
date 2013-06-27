@@ -4,8 +4,11 @@
   Profile
 {% endblock %}
 
+{% block hero %}
+    <h2>{{userprofile.user.username}}</h2>
+{% endblock hero %}
+
 {% block content %}
-<h2>{{userprofile.user.username}}</h2>
 <form class="form-horizontal" action='.' method="POST">
   {% csrf_token %}
 
