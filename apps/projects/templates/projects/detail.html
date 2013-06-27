@@ -6,68 +6,73 @@
 {% endblock %}
 
 {% block content %}
+<div class="span7 middle">
 
-<h1>{{project.name}}</h1>
+    <h1>{{project.name}}</h1>
 
-{% if request.user.userprofile in project.mentors.all or request.user.is_staff %}
-<ul class="inline">
-    <li><a href="{% url "project_edit" project.pk %}">
-        Edit Project
-    </a></li>
-    <li><a href="{% url "project_applicants" project.pk project.slug %}">
-        View/Approve {{project.applicants.count}} Applicants
-    </a></li>
-</ul>
-{% endif %}
+    {% if request.user.userprofile in project.mentors.all or request.user.is_staff %}
+    <ul class="inline">
+        <li><a href="{% url "project_edit" project.pk %}">
+            Edit Project
+        </a></li>
+        <li><a href="{% url "project_applicants" project.pk project.slug %}">
+            View/Approve {{project.applicants.count}} Applicants
+        </a></li>
+    </ul>
+    {% endif %}
 
-{% if not project.is_approved %}
-    <div class="alert alert-error"> Project not approved </div>
-{% endif %}
+    {% if not project.is_approved %}
+        <div class="alert alert-error"> Project not approved </div>
+    {% endif %}
 
-{% if request.user.userprofile in project.mentors.all or request.user.userprofile in project.members.all %}
-    <div class="alert alert-success"> You are in this group </div>
-{% elif request.user.userprofile in project.applicants.all %}
-    <div class="alert alert-success"> Your application has been submitted for this group </div>
-{% else %}
-    <form action="." method="POST">
-        {% csrf_token %}
-        <input type="Submit" value="Apply to Project" />
-    </form>
-{% endif %}
+    {% if request.user.userprofile in project.mentors.all or request.user.userprofile in project.members.all %}
+        <div class="alert alert-success"> You are in this group </div>
+    {% elif request.user.userprofile in project.applicants.all %}
+        <div class="alert alert-success"> Your application has been submitted for this group </div>
+    {% else %}
+        <form action="." method="POST">
+            {% csrf_token %}
+            <input type="Submit" value="Apply to Project" />
+        </form>
+    {% endif %}
 
-<pre class="reset-bg">
-    {{project.description}}
-</pre>
+    <pre class="reset-bg">
+        {{project.description}}
+    </pre>
+    <br />
 
-<h4>Technologies Used:</h4>
-<p>
-  {% for tag in project.technologies.all %}
-    <a href="{% url "project_index" %}?tech={{tag}}" class="label label-info">{{tag}}</a>
-  {% endfor %}
-<p>
+    <h4>Technologies Used:</h4>
+    <p>
+      {% for tag in project.technologies.all %}
+        <a href="{% url "project_index" %}?tech={{tag}}" class="label label-info">{{tag}}</a>
+      {% endfor %}
+    <p>
+    <br />
 
-<h4>Project Members:</h4>
-<dl>
-    <dt>Mentor(s)</dt>
-    <dd>
-        <ul class="unstyled">
-            {% for mentor in project.mentors.all %}
-            <li class="unstyled"> <a href="{% url "userprofile_detail" mentor.pk %}" > {{mentor.user}}</a></li>
-            {% endfor %}
-        </ul>
-    </dd>
+    <h4>Project Members:</h4>
+    <dl>
+        <dt>Mentor(s)</dt>
+        <dd>
+            <ul class="unstyled">
+                {% for mentor in project.mentors.all %}
+                <li class="unstyled"> <a href="{% url "userprofile_detail" mentor.pk %}" > {{mentor.user}}</a></li>
+                {% endfor %}
+            </ul>
+        </dd>
+        <br />
 
-    <dt>Mentees</dt>
-    <dd>
-        <ul class="unstyled">
-            {% for mentee in project.members.all %}
-            <li><a href="{% url "userprofile_detail" mentee.pk %}"> {{mentee.user}} </a></li>
-            {% endfor %}
-        </ul>
-    </dd>
-</ul>
+        <dt>Mentees</dt>
+        <dd>
+            <ul class="unstyled">
+                {% for mentee in project.members.all %}
+                <li><a href="{% url "userprofile_detail" mentee.pk %}"> {{mentee.user}} </a></li>
+                {% endfor %}
+            </ul>
+        </dd>
+    </ul>
 
-<br />
+    <br />
+</div>
 
 {% endblock %}
 
