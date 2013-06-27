@@ -2,18 +2,22 @@
 {% extends "base.html" %}
 
 {% block meta_title %}
-	Project Proposal - CodeRaising Projects 
+	Project Proposal - CodeRaising Projects
 {% endblock %}
 
-{% block content %}
+{% block hero %}
+    <h1>Project Proposal</h1>
+{% endblock %}
 
-<h1>Project Proposal</h1>
+
+{% block content %}
 <form action="." method="POST">
 	{{ form }}
 	{% csrf_token %}
 	<br />
 	<input type="submit" value="Save"/>
 </form>
+
 {% comment %}
 <hr />
 <h3>Description</h3>
@@ -39,8 +43,6 @@
 	<li> {{mentee.user}} </li>
 	{% endfor %}
 </ul>
-
-
 {% endcomment %}
 
 {% endblock %}

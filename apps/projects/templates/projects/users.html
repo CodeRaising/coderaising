@@ -2,13 +2,18 @@
 {% extends "base.html" %}
 
 {% block meta_title %}
-	{{project.name}}: Members - CodeRaising Projects 
+	{{project.name}}: Members - CodeRaising Projects
 {% endblock %}
 
-{% block content %}
+
+{% block hero %}
 
 <h1>{{project.name}}</h1>
-<hr />
+
+{% endblock hero %}
+
+
+{% block content %}
 
 <h3>Mentees:</h3>
 <ul>

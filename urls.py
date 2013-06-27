@@ -6,7 +6,6 @@ from mezzanine.core.views import direct_to_template
 
 from wiki.urls import get_pattern as get_wiki_pattern
 from django_notify.urls import get_pattern as get_notify_pattern
-from apps.cities.views import ClassyDummyView
 
 admin.autodiscover()
 
