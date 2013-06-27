@@ -5,30 +5,31 @@
   CodeRaising Projects
 {% endblock %}
 
+{% block hero %}
+    <h1>Projects</h1>
+    <a class="btn btn-success" href="{% url "project_propose" %}">Propose a project </a>
+{% endblock %}
+
 {% block content %}
-<h1>Projects:</h1>
-<div align="center"> 
-    <a class="btn btn-large btn-success" href="{% url "project_propose" %}">Propose a project </a> 
-</div>
 
 {% for project in project_list %}
     {% if project.is_approved  or request.user.is_staff %}
         <h2>
              <a href="{% url "project_detail" project.pk project.slug %}">
-            {{project.name}} 
+            {{project.name}}
             </a>
-        </h2>    
+        </h2>
             {% if request.user.is_staff and not project.is_approved %}
                 <div class="alert alert-error"> Project not approved </div>
             {% endif %}
         <blockquote>
             <pre class="reset-bg"> {{project.description}} </pre>
-            Technologies for this project: 
+            Technologies for this project:
             {% for tag in project.technologies.all %}
                 <a href="{% url "project_index" %}?tech={{tag}}" class="label label-info">{{tag}}</a>
             {% endfor %}
         </blockquote>
-        
+
     {% endif %}
 {% endfor %}
 

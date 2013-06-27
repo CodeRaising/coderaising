@@ -6,7 +6,6 @@ from mezzanine.core.views import direct_to_template
 
 from wiki.urls import get_pattern as get_wiki_pattern
 from django_notify.urls import get_pattern as get_notify_pattern
-from apps.cities.views import ClassyDummyView
 
 admin.autodiscover()
 
@@ -17,40 +16,11 @@ admin.autodiscover()
 urlpatterns = patterns(
     "",
     url(r"^users/", include("apps.userprofile.urls")),
-    url(r"^cities/", include("apps.cities.urls")),
+    # url(r"^cities/", include("apps.cities.urls")),
     url(r"^projects/", include("apps.projects.urls")),
     # once we compartmentalize the function into apps (profiles, projects, etc...)
     # it'll make sense to use include() and store the relevant urls within that app
     # Here are four different ways to render a template:
-
-    # dummy1 and dummy2 use only generic views.  They are good for testing new 
-    # templates, or for pages that don't need any context variables (say, if 
-        # everything will be coded into the html directly).
-    # In dummy1, I did add an additional parameter that goes through to the
-    # template in the "params" dictionary, but you should generally avoid 
-    # this by using an actual view.
-    url(
-        r"^dummy1/$",
-        direct_to_template,
-        {"template": "dummy.html", "variable": "You shouldn't put this much in your URLconf"},
-        name="dummy1"
-        ),
-    # this is a better dummy1 implementation (with no additional context passed)
-    # url(
-    #     r"^dummy1/$",
-    #     direct_to_template,
-    #     {"template": "dummy.html"},
-    #     name="dummy1"
-    #     ),
-    url(r"^dummy2/$", TemplateView.as_view(template_name="dummy.html"), name="dummy2"),
-
-    # these two examples refer to actual views in apps/core/views.py  For the
-    # purposes of just creating a template, it's fine to use one of the two 
-    # methods above, but once you start making the template do stuff, you'll
-    # want to use a custom view.
-    url(r"^dummy3/$", "apps.cities.views.functional_dummy_view", name="dummy3"),
-    url(r"^dummy4/$", ClassyDummyView.as_view(), name="dummy4"),
-
 
 # --------------------------------------------------------------------------
     # preconfigured stuff below this line.

@@ -83,7 +83,7 @@ TWITTER_DEFAULT_QUERY_TYPE = "user"
 # If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
 USE_SOUTH = True
-
+TAGGIT_FORCE_LOWERCASE = True
 
 ########################
 # MAIN DJANGO SETTINGS #

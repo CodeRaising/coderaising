@@ -5,12 +5,11 @@
     {{project.name}} - CodeRaising Projects
 {% endblock %}
 
-{% block content %}
-<div class="span7 middle">
+
+{% block hero %}
 
     <h1>{{project.name}}</h1>
-
-    {% if request.user.userprofile in project.mentors.all or request.user.is_staff %}
+    {% if user.userprofile in project.mentors.all or user.is_staff %}
     <ul class="inline">
         <li><a href="{% url "project_edit" project.pk %}">
             Edit Project
@@ -21,25 +20,29 @@
     </ul>
     {% endif %}
 
+    {% if user.userprofile in project.mentors.all or user.userprofile in project.members.all %}
+        <div class="alert alert-success"> You are in this group </div>
+    {% elif user.userprofile in project.applicants.all %}
+        <div class="alert alert-success"> Your application has been submitted for this group </div>
+    {% else %}
+            <a class="btn btn-success" href="{% url "project_apply" project.pk project.slug %}">Apply to Project</a>
+        </form>
+    {% endif %}
+
     {% if not project.is_approved %}
         <div class="alert alert-error"> Project not approved </div>
     {% endif %}
 
-    {% if request.user.userprofile in project.mentors.all or request.user.userprofile in project.members.all %}
-        <div class="alert alert-success"> You are in this group </div>
-    {% elif request.user.userprofile in project.applicants.all %}
-        <div class="alert alert-success"> Your application has been submitted for this group </div>
-    {% else %}
-        <form action="." method="POST">
-            {% csrf_token %}
-            <input type="Submit" value="Apply to Project" />
-        </form>
-    {% endif %}
+{% endblock hero %}
 
-    <pre class="reset-bg">
-        {{project.description}}
-    </pre>
-    <br />
+
+{% block content %}
+<div class="span7 middle">
+
+<pre class="reset-bg">
+    {{project.description}}
+</pre>
+<br />
 
     <h4>Technologies Used:</h4>
     <p>

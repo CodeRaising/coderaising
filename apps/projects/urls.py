@@ -5,7 +5,6 @@ from .views import (
     ProjectProposeView,
     ProjectDetailView,
     ProjectEditView,
-    ProjectUsersView,
     ProjectApplyView,
     ProjectApplicantsView,
     ProjectApplicants,
@@ -24,13 +23,10 @@ urlpatterns = patterns("",
     url(r"^(?P<pk>\d+)(?:-(?P<slug>[\w|\s|-]+))?/$", ProjectDetailView.as_view(), name="project_detail"),
 
     # project edit page url: /projects/(id)-(slug)/edit-project
-    url(r"^(?P<pk>\d+)-?[\w|\s|-]*/edit-project/$", ProjectEditView.as_view(), name="project_edit"),
-
-    # project users list view url: /projects/(id)-(slug)/users
-    url(r"^(?P<pk>\d+)-?[\w|\s|-]*/users/$", ProjectUsersView.as_view(), name="project_users"),
+    url(r"^(?P<pk>\d+)(?:-(?P<slug>[\w|\s|-]+))?/edit-project/$", ProjectEditView.as_view(), name="project_edit"),
 
     # apply to project url: /projects/(id)-(slug)/apply-to-project
-    url(r"^(?P<project_id>\d+)-?[\w|\s|-]*/apply-to-project/$", ProjectApplyView.as_view(), name="project_apply"),
+    url(r"^(?P<pk>\d+)(?:-(?P<slug>[\w|\s|-]+))?/apply-to-project/$", ProjectApplyView.as_view(), name="project_apply"),
 
     url(r"^(?P<pk>\d+)(?:-(?P<slug>[\w|\s|-]+))?/applicants/$", ProjectApplicants.as_view(), name="project_applicants"),
 
