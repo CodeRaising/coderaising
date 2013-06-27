@@ -1,5 +1,10 @@
 
 pre.reset-bg {
 	background-color: rgb(255, 255, 255);
-	border: none; 
+	border: none;
+}
+#navbar-img {
+    box-shadow: none;
+    position: relative;
+    margin: -14px 10px -10px;
 }
