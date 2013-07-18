@@ -4,6 +4,11 @@ import dj_database_url
 # MEZZANINE SETTINGS #
 ######################
 
+SITE_TAGLINE = "a continuous code jam..."
+SITE_TITLE = "CodeRaising"
+TWITTER_DEFAULT_QUERY = "@CodeRaising"
+TWITTER_DEFAULT_QUERY_TYPE = "user"
+
 # The following settings are already defined with default values in
 # the ``defaults.py`` module within each of Mezzanine's apps, but are
 # common enough to be put here, commented out, for convenient
@@ -78,7 +83,7 @@ import dj_database_url
 # If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
 USE_SOUTH = True
-
+TAGGIT_FORCE_LOWERCASE = True
 
 ########################
 # MAIN DJANGO SETTINGS #
@@ -145,8 +150,13 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    # other finders..
+    'compressor.finders.CompressorFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+COMPRESS_PARSER = 'compressor.parser.HtmlParser'
+COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter', 
+                        'compressor.filters.cssmin.CSSMinFilter']
 
 
 #############
@@ -156,9 +166,9 @@ STATICFILES_FINDERS = (
 DATABASES = {
     "default": {
         # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-        "ENGINE": "django.db.backends.",
+        "ENGINE": "django.db.backends.sqlite3",
         # DB name or path to database file if using sqlite3.
-        "NAME": "",
+        "NAME": "coderaising_local.db",
         # Not used with sqlite3.
         "USER": "",
         # Not used with sqlite3.
@@ -230,6 +240,7 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.humanize", # for django-wiki
     "django.contrib.redirects",
     "django.contrib.sessions",
     "django.contrib.sites",
@@ -250,6 +261,21 @@ INSTALLED_APPS = (
     #"mezzanine.mobile",
     "mezzanine_events",
     "mezzanine_pagedown",
+    "south",
+    "taggit", #for django tags
+    # "taggit_autosuggest",
+    "django_notify", # for django-wiki
+    "mptt", # for django-wiki
+    "sekizai", # for django-wiki
+    "sorl.thumbnail", # for django-wiki
+    "wiki", # for django-wiki
+    "wiki.plugins.attachments", # for django-wiki
+    "wiki.plugins.notifications", # for django-wiki
+    "wiki.plugins.images", # for django-wiki
+    "wiki.plugins.macros", # for django-wiki
+    "apps.core_stuff",
+    "apps.cities",
+    "apps.projects",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -265,6 +291,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "sekizai.context_processors.sekizai", # for django-wiki
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -361,7 +388,9 @@ MZEVENTS_GOOGLE_MAPS_DOMAIN = "maps.google.com"
 # Whether the {% google_static_map %} template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones. Default: True.
 MZEVENTS_HIDPI_STATIC_MAPS = True 
 # The time zone that the event dates and times are in. Either this or the TIME_ZONE setting needs to be set.
-MZEVENTS_TIME_ZONE = "America/New_York" 
+MZEVENTS_TIME_ZONE = "America/New_York"
+
+LOGIN_URL = "/accounts/login/"
 
 if os.environ.get("RACK_ENV", None) == "production":
     import dj_database_url

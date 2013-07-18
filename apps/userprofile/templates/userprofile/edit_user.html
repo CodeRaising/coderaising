@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block meta_title %}
+    Edit Profile
+{% endblock %}
+
+{% block hero %}
+    <h2 style="text-align:center;">{{ request.user.username }}</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 0px auto 20px;">
+<form class="form-horizontal" action='.' method="POST">
+    {% csrf_token %}
+    <fieldset>
+      {{ user_form.non_field_errors }}
+      <div class="control-group">
+        {% for field in user_form %}
+          <label class="control-label">{{ field.label_tag }}</label>
+          <div class="controls">
+          {{ field }}
+          <span class="help-block">{{ field.errors }}</span>
+        </div>
+        {% endfor %}
+        {% for field in userprofile_form %}
+          <label class="control-label">{{ field.label_tag }}</label>
+          <div class="controls">
+          {{ field }}
+          <span class="help-block">{{ field.errors }}</span>
+        </div>
+        {% endfor %}
+      </div>
+
+
+
+    </fieldset>
+  <br>
+  <input type="submit" value="Update"/>
+
+</form>
+</div>
+{% endblock %}

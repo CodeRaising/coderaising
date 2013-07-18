@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load pages_tags mezzanine_tags i18n future %}
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
 <html>
 <head>
 
@@ -15,11 +15,12 @@
 <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
 {% endifinstalled %}
 
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.1.1/united/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.1.1/united/bootstrap.min.css"> -->
 {% compress css %}
-<!-- <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css"> this is for local testing -->
+<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css"> <!--this is for local testing -->
 <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.responsive.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/mezzanine.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/coderaising.css">
 {% ifinstalled cartridge.shop %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/cartridge.css">
 {% endifinstalled %}
@@ -54,7 +55,10 @@ $(function() {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </a>
-    {% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
+    <a class="brand" href="/">
+      <img id="navbar-img" src="{% static "img/coderaising.gif" %}">
+      {{ settings.SITE_TITLE }}
+    </a>
     {% if settings.SITE_TAGLINE %}<p class="tagline">{{ settings.SITE_TAGLINE }}</p>{% endif %}
     <div class="nav-collapse">
         {% search_form %}
@@ -65,23 +69,32 @@ $(function() {
 </div>
 
 <div class="container">
-
-{% nevercache %}
-{% for message in messages %}
-<div class="alert alert-{{ message.tags }}" data-alert="alert">
-<a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
+    {% nevercache %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" data-alert="alert">
+        <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
+        </div>
+    {% endfor %}
+    {% endnevercache %}
 </div>
-{% endfor %}
-{% endnevercache %}
 
+{% block canvas %}
 
-<h1>{% block title %}{% endblock %}</h1>
+<div class="container">
 
-<ul class="breadcrumb">
-{% spaceless %}
-{% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-{% endspaceless %}
-</ul>
+    <div class="hero-unit">
+        {% block hero %}
+            <h1>{% block title %}{% endblock %}</h1>
+        {% endblock hero %}
+    </div>
+
+    {% comment %}
+    <ul class="breadcrumb">
+    {% spaceless %}
+    {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+    {% endspaceless %}
+    </ul>
+    {% endcomment %}
 
 </div>
 
@@ -95,6 +108,7 @@ $(function() {
 </div>
 
 <div class="span7 middle">
+    {% block content %}{% endblock content %}
     {% block main %}{% endblock %}
 </div>
 
@@ -113,7 +127,7 @@ $(function() {
 
 </div>
 </div>
-
+{% endblock canvas %}
 <footer>
 <div class="container">
 {% page_menu "pages/menus/footer.html" %}

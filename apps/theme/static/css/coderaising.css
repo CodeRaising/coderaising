@@ -1,0 +1,16 @@
+.hero-unit {
+    padding: 30px 60px;
+}
+.hero-unit h1 {
+    font-size: 50px;
+}
+pre.reset-bg {
+	background-color: inherit;
+	border: inherit;
+	font: inherit;
+}
+#navbar-img {
+    box-shadow: none;
+    position: relative;
+    margin: -14px 10px -10px;
+}

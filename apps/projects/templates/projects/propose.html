@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+
+{% block meta_title %}
+	Project Proposal - CodeRaising Projects
+{% endblock %}
+
+{% block hero %}
+    <h1>Project Proposal</h1>
+{% endblock %}
+
+
+{% block content %}
+<form action="." method="POST">
+	{{ form }}
+	{% csrf_token %}
+	<br />
+	<input type="submit" value="Save"/>
+</form>
+
+{% comment %}
+<hr />
+<h3>Description</h3>
+<p>
+	{{project.description}}
+</p>
+
+<h3>Technologies Used:</h3>
+<p>
+	{{project.technologies}}
+<p>
+
+<h3>Mentor(s):</h3>
+<ul>
+	{% for mentor in project.mentors.all %}
+	<li> {{mentor.user}} </li>
+	{% endfor %}
+</ul>
+
+<h3>Mentees:</h3>
+<ul>
+	{% for mentee in project.members.all %}
+	<li> {{mentee.user}} </li>
+	{% endfor %}
+</ul>
+{% endcomment %}
+
+{% endblock %}
+

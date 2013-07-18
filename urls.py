@@ -1,9 +1,11 @@
-
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 from mezzanine.core.views import direct_to_template
 
+from wiki.urls import get_pattern as get_wiki_pattern
+from django_notify.urls import get_pattern as get_notify_pattern
 
 admin.autodiscover()
 
@@ -11,11 +13,27 @@ admin.autodiscover()
 # You can also change the ``home`` view to add your own functionality
 # to the project's homepage.
 
-urlpatterns = patterns("",
+urlpatterns = patterns(
+    "",
+    url(r"^users/", include("apps.userprofile.urls")),
+    # url(r"^cities/", include("apps.cities.urls")),
+    url(r"^projects/", include("apps.projects.urls")),
+    # once we compartmentalize the function into apps (profiles, projects, etc...)
+    # it'll make sense to use include() and store the relevant urls within that app
+    # Here are four different ways to render a template:
+
+# --------------------------------------------------------------------------
+    # preconfigured stuff below this line.
 
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
-    ("^admin/", include(admin.site.urls)),
+    url(r"^admin/", include(admin.site.urls)),
+
+    # WIKI URLS
+    # ---------
+    (r'^wiki/notify/', get_notify_pattern()),
+    (r'^wiki/', get_wiki_pattern()),
+
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
@@ -27,7 +45,7 @@ urlpatterns = patterns("",
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    #url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    #url(r"^$", direct_to_template, {"template": "index.html"}, name="home"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
@@ -42,7 +60,7 @@ urlpatterns = patterns("",
     # "/.html" - so for this case, the template "pages/index.html"
     # should be used if you want to customize the homepage's template.
 
-    url("^$", "mezzanine.pages.views.page", {"slug": "/"}, name="home"),
+    url(r"^$", "mezzanine.pages.views.page", {"slug": "/"}, name="home"),
 
     # HOMEPAGE FOR A BLOG-ONLY SITE
     # -----------------------------
@@ -52,7 +70,7 @@ urlpatterns = patterns("",
     # ``settings.py`` module, and delete the blog page object from the
     # page tree in the admin if it was installed.
 
-    # url("^$", "mezzanine.blog.views.blog_post_list", name="home"),
+    # url(r"^$", "mezzanine.blog.views.blog_post_list", name="home"),
 
     # MEZZANINE'S URLS
     # ----------------
@@ -65,8 +83,8 @@ urlpatterns = patterns("",
     # ``mezzanine.urls``, go right ahead and take the parts you want
     # from it, and use them directly below instead of using
     # ``mezzanine.urls``.
-    ("^", include("mezzanine_events.urls")),
-    ("^", include("mezzanine.urls")),
+    url(r"^", include("mezzanine_events.urls")),
+    url(r"^", include("mezzanine.urls")),
 
     # MOUNTING MEZZANINE UNDER A PREFIX
     # ---------------------------------
@@ -82,7 +100,7 @@ urlpatterns = patterns("",
     # Note that for any of the various homepage patterns above, you'll
     # need to use the ``SITE_PREFIX`` setting as well.
 
-    # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
+    # url(r"^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
 
 )
 

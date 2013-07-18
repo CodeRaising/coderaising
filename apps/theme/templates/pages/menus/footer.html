@@ -1,0 +1,21 @@
+{% load i18n future pages_tags %}
+
+{% spaceless %}
+<ul id="Xprimary-menu" class="nav nav-pills">
+    {% for page in page_branch %}
+
+        {% if forloop.first %}
+        <li {% if page.is_current_or_ascendant %}class="active"{% endif %}>
+            <a href="{% url "home" %}">{% trans "Home" %}</a>
+        </li>
+        {% endif %}
+
+        {% if page.in_menu %}
+        <li {% if page.is_current_or_ascendant %}class="active"{% endif %}>
+            <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+        </li>
+        {% endif %}
+
+    {% endfor %}
+</ul>
+{% endspaceless %}

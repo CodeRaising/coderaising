@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block meta_title %}
+  Profile
+{% endblock %}
+
+{% block hero %}
+    <h1>Code Raisers</h1>
+{% endblock hero %}
+
+{% block content %}
+
+{% for user in userprofile_list %}
+<div class="row">
+  <div class="span5">
+    <div>
+      <h4><a href="{% url "userprofile_detail" user.id %}">{{user.user}}</a></h4>
+    </div>
+    <div>
+      <p>Name: {{user.user.first_name}} {{user.user.last_name|slice:":1"}}.</p>
+    </div>
+    <div>
+      <p>Bio: {{user.bio}}</p>
+    </div>
+  </div>
+  <div class="span6">Skills:
+  {% for tag in user.skills.all %}
+    <a href="{% url "userprofile_list" %}?skills={{tag}}" class="label">{{tag}}</a>
+  {% endfor %}
+  </div>
+  <br>
+  <div class="span6">Skills I would like to learn:
+  {% for tag in user.learn.all %}
+    <a href="{% url "userprofile_list" %}?learn={{tag}}" class="label label-success">{{tag}}</a>
+  {% endfor %}
+  </div>
+</div>
+<hr>
+{% endfor %}
+
+{% endblock %}

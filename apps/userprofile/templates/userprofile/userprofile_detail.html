@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block meta_title %}
+  Profile
+{% endblock %}
+
+{% block hero %}
+<h2>{{userprofile.user.username}}</h2>
+{% endblock hero %}
+
+{% block content %}
+
+<!-- <img style="margin-right:20px;" src="http://www.gravatar.com/avatar/17eec5e3a2218193fc20744616f4bcd3?s=128"> -->
+
+{% if user.is_authenticated %}
+  <h4>Name:</h4>
+  <p>
+    {{userprofile.user.first_name}} {{userprofile.user.last_name}}
+  </p>
+{% endif %}
+
+<h4>Bio:</h4> <p>{{userprofile.bio}}</p><br>
+
+<h4>Technologies I Know:</h4>
+<p>
+  {% for tag in userprofile.skills.all %}
+    <a href="{% url "userprofile_list" %}?skills={{tag}}" class="label">{{tag}}</a>
+  {% endfor %}
+</p><br>
+
+<h4>Technologies I Want To Learn More About:</h4>
+<p>
+  {% for tag in userprofile.learn.all %}
+    <a href="{% url "userprofile_list" %}?learn={{tag}}" class="label label-success">{{tag}}</a>
+  {% endfor %}
+</p><br>
+
+{% endblock %}

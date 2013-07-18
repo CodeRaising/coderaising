@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% comment %}
+{% endcomment %}
+
+{% block meta_title %}
+  {{city}}
+{% endblock %}
+
+
+{% block canvas %}
+<h1>CodeRaising {{cohort}}</h1><!-- <em>  A non-stop codejam in Beantown</em> -->
+<div class="navbar" style="padding:0px">
+  <div class="navbar-inner" style="padding-left:0px;padding-right:0px">
+    <div class="container">
+      <div class="nav-collapse">
+        <ul class="nav pull-left">
+          <li class="dropdown"><a href="../">Home</a></li>
+<!--           <li class="dropdown"><a href="./current/">Current Class</a></li>
+          <li class="dropdown"><a href="./projects/">Upcoming Project</a></li>
+          <li class="dropdown"><a href="./calendar/">Calendar</a></li>
+          <li class="dropdown"><a href="./previous/">Previous Classes</a></li> -->
+          <li class="active"><a href="">Cohorts</a></li>
+          <li class="dropdown"><a href="../calendar/">Calendar</a></li>
+          <li class="dropdown"><a href="../mentors/">Mentors</a></li>
+          <li class="dropdown"><a href="../organizers/">Organizers</a></li>
+          <li class="dropdown"><a href="../sponsors/">Sponsors</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<p style="width:750px">{{cohort.description}}</p>
+
+  <h3>Projects</h3>
+  {% for project in cohort.project_set.all %}
+  <p style="width:750px"><a href="{% url "project_detail" project.pk %}-{{project.slug}}/">{{project.name}}</a> - {{project.description}}</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

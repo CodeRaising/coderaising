@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% comment %}
+
+Take special notice at the syntax in here, notice how I generated the link to the city detail page.
+
+Right now I'm overriding content instead of canvas, this means that the sidebar will be the same here as everywhere else (and it won't be city specific).  This may be changed.
+{% endcomment %}
+
+{# This is what a single-line comment looks like #}
+<!--HTML comments show up in the html-->
+{# but django comments don't #}
+
+{% block meta_title %}
+  CodeRaising Cities
+{% endblock %}
+
+
+{% block content %}
+<p>CodeRaising currently has groups in the following cities:</p>
+
+{% for city in city_list %}
+  <p>
+    {# This generates the city_detail url for each city #}
+    <a href="{% url "city_detail" city.slug %}">
+      {# the second argument can be the url name or view path #}
+      
+      {{city.name}}
+    </a> - {{city.description}}
+  </p>
+{% endfor %}
+
+<p>Don't see your city in this list? Contact us and get it started!</p>
+
+{% endblock %}
